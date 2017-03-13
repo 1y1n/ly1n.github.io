@@ -96,7 +96,8 @@
 <meta property="og:description" content="记mjpg-streamr的安装和使用以及黑屏问题环境：VMware  Ubuntu16.04   摄像头为USB外接摄像头，支持UVC经测试，笔记本自带摄像头也可以使用
 先安装必要的文件123456sudo apt-get install libsdl1.2-dev subversion libjpeg-dev libjpeg62-dev imagemagickgit clone https:/">
 <meta property="og:image" content="https://ly-nina.github.io/img/mjpg-streamer-1.png">
-<meta property="og:updated_time" content="2017-03-13T15:50:30.643Z">
+<meta property="og:image" content="https://ly-nina.github.io/img/mjpg-streamer-2.png">
+<meta property="og:updated_time" content="2017-03-13T16:01:37.921Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记mjpg-streamr的安装和使用">
 <meta name="twitter:description" content="记mjpg-streamr的安装和使用以及黑屏问题环境：VMware  Ubuntu16.04   摄像头为USB外接摄像头，支持UVC经测试，笔记本自带摄像头也可以使用
@@ -331,7 +332,8 @@
 <p>先安装必要的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install libsdl1.2-dev subversion libjpeg-dev libjpeg62-dev imagemagick</div><div class="line">git clone https://github.com/shrkey/mjpg-streamer  //如果没有安装git，要先 sudo apt install git</div><div class="line">cd mjpg-streamer/mjpg-streamer</div><div class="line">make clean</div><div class="line">make </div><div class="line">sudo make install</div></pre></td></tr></table></figure></p>
 <p>编译完成后，测试是否能使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export LD_LIBRARY_PATH=.</div><div class="line">./mjpg_streamer -i &quot;input_uvc.so -d /dev/video0 -y -r 960x720&quot; -o &quot;output_http.so -w ./www&quot;</div></pre></td></tr></table></figure></p>
 <p>浏览器打开调试页面<br>127.0.0.1:8080</p>
-<h2 id="碰到的问题"><a href="#碰到的问题" class="headerlink" title="碰到的问题"></a>碰到的问题</h2><h1 id="浏览器打开后不能正常显示图像。"><a href="#浏览器打开后不能正常显示图像。" class="headerlink" title="浏览器打开后不能正常显示图像。"></a>浏览器打开后不能正常显示图像。</h1><p>修改分辨率为最低160x120  也还是不行。<br>后面运行cheese，打开后也黑屏<br>下载了个camorama，打开直接无响应。<br>去网上找cheese 黑屏，找到一个<a href="http://blog.csdn.net/alger_magic/article/details/53383181" target="_blank" rel="external">博客</a><br>在VMware虚拟机设置上，把usb兼容性由原来2.0改为3.0<br>重新加载摄像头，再打开cheese，图像出现。<br>打开mjpg，已经可以正常显示图片。<br>//图片<br><img src="img/mjpg-streamer-1.png" alt="logo"></p>
+<h2 id="碰到的问题"><a href="#碰到的问题" class="headerlink" title="碰到的问题"></a>碰到的问题</h2><h1 id="浏览器打开后不能正常显示图像。"><a href="#浏览器打开后不能正常显示图像。" class="headerlink" title="浏览器打开后不能正常显示图像。"></a>浏览器打开后不能正常显示图像。</h1><p>修改分辨率为最低160x120  也还是不行。<br>后面运行cheese，打开后也黑屏<br>下载了个camorama，打开直接无响应。<br>去网上找cheese 黑屏，找到一个<a href="http://blog.csdn.net/alger_magic/article/details/53383181" target="_blank" rel="external">博客</a><br>在VMware虚拟机设置上，把usb兼容性由原来2.0改为3.0<br>重新加载摄像头，再打开cheese，图像出现。<br>打开mjpg，已经可以正常显示图片。</p>
+<p><img src="/img/mjpg-streamer-1.png" alt="虚拟机设置"><br><img src="/img/mjpg-streamer-2.png" alt="正常显示"></p>
 <p>参考链接：<br><a href="http://blog.chinaunix.net/uid-25885064-id-3463014.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-25885064-id-3463014.html</a><br><a href="http://bbs.elecfans.com/jishu_510084_1_1.html" target="_blank" rel="external">http://bbs.elecfans.com/jishu_510084_1_1.html</a><br><a href="http://blog.csdn.net/alger_magic/article/details/53383181" target="_blank" rel="external">http://blog.csdn.net/alger_magic/article/details/53383181</a></p>
 
       
