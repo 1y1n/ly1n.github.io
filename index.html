@@ -245,6 +245,145 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/03/19/opencv安装过程及错误解决办法/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="nina">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="nina's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="nina's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/19/opencv安装过程及错误解决办法/" itemprop="url">
+                  opencv安装过程及错误解决办法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-19T15:59:33+08:00">
+                2017-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="opencv安装过程及错误解决办法"><a href="#opencv安装过程及错误解决办法" class="headerlink" title="opencv安装过程及错误解决办法"></a>opencv安装过程及错误解决办法</h2><p>Ubuntu 16.04<br>Cmake 3.5.1<br>opencv 3.2.0</p>
+<p>先准备好opencv、cmake、cmake-qt-gui<br>参考：<a href="http://blog.csdn.net/u011783201/article/details/52086560" target="_blank" rel="external">http://blog.csdn.net/u011783201/article/details/52086560</a><br>opencv：<br><a href="http://www.opencv.org.cn/index.php/Download" target="_blank" rel="external">http://www.opencv.org.cn/index.php/Download</a><br><a href="http://opencv.org/downloads.html" target="_blank" rel="external">http://opencv.org/downloads.html</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># sudo apt-get install cmake cmake-qt-gui</div><div class="line"># sudo apt-get install libgtk2.0-dev</div><div class="line"># sudo apt-get install pkg-config</div></pre></td></tr></table></figure></p>
+<p>解压opencv、再新建一个opencv_build文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># sudo cmake-gui</div></pre></td></tr></table></figure></p>
+<p>source code 选择opencv文件夹<br>build the binaries 选择新建的build文件夹</p>
+<p>点击configurate，会卡在ippicv下载阶段：</p>
+<p>解决办法一：</p>
+<p>把3rdparty里的ippicv文件夹删除，然后在cmake-gui点击configurate<br>还是会出错，但不会卡在那(卡在那是因为程序想下载，但又下载不下来，就一直卡在这里，卡很久之后才会提示错误)。不用管，直接点击generate(注意要把WITH_IPP的勾取消，否则后面编译会出错)，显示完成。</p>
+<p>解决办法二：<br><a href="http://blog.csdn.net/carson2005/article/details/46381351" target="_blank" rel="external">http://blog.csdn.net/carson2005/article/details/46381351</a><br>找到ippv的linux版本，替换那个压缩文件之后再configurate<br>这里也要把WITH_IPP取消。<br>(这个办法不确定能不能行得通。因为我开着两个虚拟机试的，这个办法是在Ubuntu12.04上，配置、生成的时候没有问题，但是在后面build文件夹  make 的时候会报错，原因是ippicv，但我已经把IPP的勾点掉了的，不知道为什么还会提示这个。网上找的也说勾点掉就可以。试了好几次都这样，我就放弃了，毕竟在16.04已经可以用了，就不纠结了0.0.继续往下看….)</p>
+<p>====================================================<br>然后直接去试试example(在opencv-3.2.0/sample/cpp/example_cmake)，返回<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Could not find a package configuration file provided by &quot;OpenCV&quot; with any</div><div class="line">of the following names:</div><div class="line"></div><div class="line">  OpenCVConfig.cmake</div><div class="line">  opencv-config.cmake</div><div class="line"></div><div class="line">Add the installation prefix of &quot;OpenCV&quot; to CMAKE_PREFIX_PATH or set</div><div class="line">&quot;OpenCV_DIR&quot; to a directory containing one of the above files.  If &quot;OpenCV&quot;</div><div class="line">provides a separate development package or SDK, be sure it has been</div><div class="line">installed.</div></pre></td></tr></table></figure></p>
+<p>一直以为是安装出问题，又重装好几遍还是一样，然后又去找文件设置路径。。。后面在<a href="http://stackoverflow.com/questions/27127153/cmake-error-at-cmakelists-txt-cmake-prefix-path" target="_blank" rel="external">stackoverflow</a>看到，<br>要配置OpenCVConfig.cmake的路径，<br>先搜索这个文件，发现是在build目录下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># sudo cmake -DOpenCV_DIR=&quot;/home/user/opencv-3.2_build/&quot;</div></pre></td></tr></table></figure></p>
+<p>返回<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-- OpenCV library status:</div><div class="line">--     version: 3.2.0</div><div class="line">--     libraries: opencv_calib3d;opencv_core;opencv_features2d;opencv_flann;opencv_highgui;opencv_imgcodecs;opencv_imgproc;opencv_ml;opencv_objdetect;opencv_photo;opencv_shape;opencv_stitching;opencv_superres;opencv_video;opencv_videoio;opencv_videostab</div><div class="line">--     include path: /home/user/opencv-3.2_build;/home/user/opencv-3.2.0/include;/home/user/opencv-3.2.0/include/opencv;/home/user/opencv-3.2.0/modules/core/include;/home/user/opencv-3.2.0/modules/flann/include;/home/user/opencv-3.2.0/modules/imgproc/include;/home/user/opencv-3.2.0/modules/ml/include;/home/user/opencv-3.2.0/modules/photo/include;/home/user/opencv-3.2.0/modules/video/include;/home/user/opencv-3.2.0/modules/imgcodecs/include;/home/user/opencv-3.2.0/modules/shape/include;/home/user/opencv-3.2.0/modules/videoio/include;/home/user/opencv-3.2.0/modules/highgui/include;/home/user/opencv-3.2.0/modules/objdetect/include;/home/user/opencv-3.2.0/modules/superres/include;/home/user/opencv-3.2.0/modules/ts/include;/home/user/opencv-3.2.0/modules/features2d/include;/home/user/opencv-3.2.0/modules/calib3d/include;/home/user/opencv-3.2.0/modules/stitching/include;/home/user/opencv-3.2.0/modules/videostab/include</div><div class="line">-- Configuring done</div><div class="line">-- Generating done</div><div class="line">-- Build files have been written to: /home/user/opencv-3.2.0/samples/cpp/example_cmake</div></pre></td></tr></table></figure></p>
+<p>说明对当前所在文件夹编译了，现在应该能用了吧。。。。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># sudo cmake . //对当前文件夹编译,有个空格</div><div class="line"># sudo make</div><div class="line"></div><div class="line">Scanning dependencies of target opencv_example</div><div class="line">[ 50%] Building CXX object CMakeFiles/opencv_example.dir/example.cpp.o</div><div class="line">make[2]: *** No rule to make target &apos;/home/user/opencv-3.2_build/lib/libopencv_shape.so.3.2.0&apos;, needed by &apos;opencv_example&apos;.  Stop.</div><div class="line">CMakeFiles/Makefile2:67: recipe for target &apos;CMakeFiles/opencv_example.dir/all&apos; failed</div><div class="line">make[1]: *** [CMakeFiles/opencv_example.dir/all] Error 2</div><div class="line">Makefile:83: recipe for target &apos;all&apos; failed</div><div class="line">make: *** [all] Error 2</div></pre></td></tr></table></figure></p>
+<p>忘记了一件最重要的事！！！没有进build文件夹执行make和make install！之前好几次不能运行给搞懵了 = =.<br>所以提示没有.so文件</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># cd /home/user/opencv_build</div><div class="line"># make</div><div class="line"># make install</div></pre></td></tr></table></figure>
+<p>结束之后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># cd /home/user/opencv-3.2.0/samples/cpp/example_cmake</div><div class="line"># sudo cmake .</div><div class="line"># sudo make </div><div class="line">[ 50%] Linking CXX executable opencv_example</div><div class="line">[100%] Built target opencv_example</div><div class="line">./opencv_example</div></pre></td></tr></table></figure></p>
+<p><img src="/img/opencv-1.png" alt="opencv"></p>
+<p>其他程序暂未测试——–</p>
+<p>参考链接：<br><a href="http://blog.csdn.net/u011783201/article/details/52086560" target="_blank" rel="external">http://blog.csdn.net/u011783201/article/details/52086560</a><br><a href="http://www.opencv.org.cn/index.php/Download" target="_blank" rel="external">http://www.opencv.org.cn/index.php/Download</a><br><a href="http://opencv.org/downloads.html" target="_blank" rel="external">http://opencv.org/downloads.html</a><br><a href="http://blog.csdn.net/carson2005/article/details/46381351" target="_blank" rel="external">http://blog.csdn.net/carson2005/article/details/46381351</a><br><a href="http://stackoverflow.com/questions/27127153/cmake-error-at-cmakelists-txt-cmake-prefix-path" target="_blank" rel="external">http://stackoverflow.com/questions/27127153/cmake-error-at-cmakelists-txt-cmake-prefix-path</a></p>
+<font color="red" size="5">Mail:605971081@qq.com</font>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/03/13/记mjpg-streamr的安装和使用/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -932,7 +1071,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
