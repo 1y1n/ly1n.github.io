@@ -1,0 +1,677 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="25行python代码实现人脸识别翻译自:https://realpython.com/blog/python/face-recognition-with-python/
+
+在这篇文章我们将会看到一个神奇又简单的方式来开始使用Python和开源库OpenCV进行人脸识别
+在你在评论区提任何问题前：
+    1.不要忽略这篇文章就尝试运行代码.你一定要理解代码不仅正确的运行也要对它进行故障排除.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="25行python代码实现人脸识别">
+<meta property="og:url" content="https://ly-nina.github.io/2017/03/25/25行python代码实现人脸识别/index.html">
+<meta property="og:site_name" content="nina's blog">
+<meta property="og:description" content="25行python代码实现人脸识别翻译自:https://realpython.com/blog/python/face-recognition-with-python/
+
+在这篇文章我们将会看到一个神奇又简单的方式来开始使用Python和开源库OpenCV进行人脸识别
+在你在评论区提任何问题前：
+    1.不要忽略这篇文章就尝试运行代码.你一定要理解代码不仅正确的运行也要对它进行故障排除.">
+<meta property="og:updated_time" content="2017-03-25T08:20:21.778Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="25行python代码实现人脸识别">
+<meta name="twitter:description" content="25行python代码实现人脸识别翻译自:https://realpython.com/blog/python/face-recognition-with-python/
+
+在这篇文章我们将会看到一个神奇又简单的方式来开始使用Python和开源库OpenCV进行人脸识别
+在你在评论区提任何问题前：
+    1.不要忽略这篇文章就尝试运行代码.你一定要理解代码不仅正确的运行也要对它进行故障排除.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ly-nina.github.io/2017/03/25/25行python代码实现人脸识别/"/>
+
+
+
+
+
+  <title> 25行python代码实现人脸识别 | nina's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">nina's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/03/25/25行python代码实现人脸识别/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="nina">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="nina's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="nina's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                25行python代码实现人脸识别
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T15:46:43+08:00">
+                2017-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="25行python代码实现人脸识别"><a href="#25行python代码实现人脸识别" class="headerlink" title="25行python代码实现人脸识别"></a>25行python代码实现人脸识别</h1><p>翻译自:<br><a href="https://realpython.com/blog/python/face-recognition-with-python/" target="_blank" rel="external">https://realpython.com/blog/python/face-recognition-with-python/</a></p>
+<hr>
+<p>在这篇文章我们将会看到一个神奇又简单的方式来开始使用Python和开源库OpenCV进行人脸识别</p>
+<pre><code>在你在评论区提任何问题前：
+    1.不要忽略这篇文章就尝试运行代码.你一定要理解代码不仅正确的运行也要对它进行故障排除.
+    2.确保你使用的是OpenCV v2.
+    3.你需要一个正常工作的摄像头来正确地运行这些脚本.
+    4.看看别人的评论或问题,可能你的问题已经解决.
+</code></pre><h2 id="OpenCV"><a href="#OpenCV" class="headerlink" title="OpenCV"></a>OpenCV</h2><p>OpenCV是计算机视觉最流行的库,起初是用C/C++写的,现在支持Python.</p>
+<p>OpenCV使用机器学习算法在一张图片里搜索人脸。对于一些和人脸一样复杂的东西,没有一个简单的测试会告诉你有没有发现人脸.相反,有数千种小的模式/特征会被匹配.这个算法打破了识别人脸的工作,甚至是成千上万的更小的,比特级别的任务,每一个都很容易解决.这些工作也被称为分类器。</p>
+<p>对于一些像人脸一样的东西,你可能有6000甚至更多的分类器,所有这些一定会匹配一个被检测到的脸部(当然,在误差范围内).但问题在于:对于人脸检测,这个算法是从图片的左上方开始并且通过一个一个小的数据块向下移动,对每一个数据块,都不断地问”这是一张脸吗?…这是一张脸吗?…这是一张脸吗?”对每一块做6000甚至更多的测试之后,你可能有数以百万的计算需要做,这有可能让你的计算机运算到停止。</p>
+<p>为了解决这个,OpenCV使用级联方式.什么是级联?最好的答案可以在字典中找到:一个瀑布或者是一系列瀑布.</p>
+<p>好比一系列的瀑布,OpenCV级联分为多阶段来检测人脸,突破性地解决了这个问题.对于每一个块,会先进行粗糙快速的测试.如果通过,会进行更细微详细的测试等等.算法可能有30-50个阶段或级联,如果全部阶段通过,这只会检测出一张脸.这个算法的优点是大部分的图片在前几个阶段就会返回否定的结果,这意味着这个算法不会浪费时间来测试所有的6000个特征.人脸检测现在可以实时处理完成,而不是好几个小时.</p>
+<h2 id="级联训练"><a href="#级联训练" class="headerlink" title="级联训练"></a>级联训练</h2><p>尽管理论可能听起来很复杂,但训练它非常简单.级联本身只是一堆包含OpenCV数据用于检测物体的XML文件.使用你想要的级联来初始化的你代码,然后它就会为你工作.</p>
+<p>自从人脸检测很常见之后,OpenCV带有一些内置的级联来检测从脸到眼睛到手和脚的一切.甚至还有一些用于非人类的级联.例如.如果你开着一家香蕉店并且想跟踪偷香蕉的人,这个东西会为你建立此用途的级联.</p>
+<h2 id="安装OpenCV"><a href="#安装OpenCV" class="headerlink" title="安装OpenCV"></a>安装OpenCV</h2><p>首先,你需要找到用于你的操作系统的正确的设置文件.</p>
+<p>我发现安装OpenCV是最难的一部分.如果你碰到奇怪的无法解释的错误,可能是由于库冲突,32/64位的差异等.我找到一个最简单的方法,在Linux虚拟机里从零开始安装OpenCV.</p>
+<p>一旦安装完成,你可以测试是否能工作,通过启动Python会话并输入:<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ python</div><div class="line">&gt;&gt;&gt; import cv2</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<p>如果你没有碰到任何错误,你可以继续下一部分.</p>
+<h2 id="理解代码"><a href="#理解代码" class="headerlink" title="理解代码"></a>理解代码</h2><p>让我们分解实际代码,你可以在repo中下载.face_detect.py脚本,abba.png图片和haarcascade_frontalface_default.xml.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 得到用户提供的值</div><div class="line">imagePath = sys.argv[1]</div><div class="line">cascPath = sys.argv[2]</div></pre></td></tr></table></figure></p>
+<p>你首先将图像和级联名称作为命令行参数传递进去.我们将会用Abba图像以及OpenCV提供的检测人脸的默认级联.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 创建一个haar级联</div><div class="line">faceCascade = cv2CascadeClassifier(cascPath)</div></pre></td></tr></table></figure></p>
+<p>现在我们创建了级联并且初始化成人脸的级联.这会把人脸的级联装载到存储器所以可以开始使用它了.记住,这个级联只是一个XML文件,包含用于检测人脸的数据。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 读取图像</div><div class="line">image = cv2.imread(imagePath)</div><div class="line">gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</div></pre></td></tr></table></figure></p>
+<p>在这里我们读取了图像并转化为灰度图.OpenCV的许多操作都是在灰度图的基础上完成的.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 检测图像上的人脸</div><div class="line">faces = faceCascade.detectMultiScale(</div><div class="line">	gray,</div><div class="line">	scaleFactor=1.1,</div><div class="line">	minNeighbors=5,</div><div class="line">	minSize=(30, 30),</div><div class="line">	flags = cv2.cv.CV_HAAR_SCALE_IMAGE</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>这个函数检测出真实的脸-这是代码的关键,所以让我们来看看选项:<br>    1.detectMultiScale 函数是一个检测物体的普通函数.当我们调用它为人脸的级联,他就检测人脸.第一个选项是灰度图.<br>    2.第二个是scaleFactor.因为一些人脸可能会靠摄像机很近,他们的脸会比更后面的人大.这是比例因子补偿.<br>    3.这个检测算法采用移动窗口来检测目标.minNeighbors 定义了在宣布人脸被找到之前,当前窗口附近有多少目标被检测到.minSize,同时定义了每一个窗口大小</p>
+<pre><code>我使用的是这些字段的常用值.在实际生活中,你会尝试不用值的窗口大小,比例因子,等等.直到你找到一个对你最有用的值.
+</code></pre><p>这个函数会返回一个矩形列表,在它认为是脸的地方.然后,我们可以圈出它认为找到的地方.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">print &quot;Found &#123;0&#125; faces!&quot;.format(len(faces))</div><div class="line"></div><div class="line"># 在脸周围画出矩形边框</div><div class="line">for (x, y, w, h) in faces:</div><div class="line">	cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0),2)</div></pre></td></tr></table></figure></p>
+<p>这个函数返回4个值:矩形的x和y位置,和矩形的宽高(w, h).<br>我们用这些值来画出矩形,通过内置的rectangle()函数.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cv2.imshow(&quot;Faces found&quot;, image)</div><div class="line">cv2.waitKey(0)</div></pre></td></tr></table></figure></p>
+<p>最后,我们显示图像,并等待用户按下一个键为止.</p>
+<h2 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h2><p>验证Abba图片:<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ python face_detect.py abba.png haarcascade_frontalface_default.xml</div></pre></td></tr></table></figure></p>
+<h2 id="摄像头扩展"><a href="#摄像头扩展" class="headerlink" title="摄像头扩展"></a>摄像头扩展</h2><p>如果你想使用摄像头该怎么办?OpenCV从摄像头抓取每一帧,然后你可以通过处理每一帧来检测人脸.你需要一台强大的计算机,即使我已经用了5年的笔记本看起来应该没问题,只要不乱搞.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/19/opencv安装过程及错误解决办法/" rel="next" title="opencv安装过程及错误解决办法">
+                <i class="fa fa-chevron-left"></i> opencv安装过程及错误解决办法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="nina" />
+          <p class="site-author-name" itemprop="name">nina</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#25行python代码实现人脸识别"><span class="nav-number">1.</span> <span class="nav-text">25行python代码实现人脸识别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenCV"><span class="nav-number">1.1.</span> <span class="nav-text">OpenCV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#级联训练"><span class="nav-number">1.2.</span> <span class="nav-text">级联训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装OpenCV"><span class="nav-number">1.3.</span> <span class="nav-text">安装OpenCV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理解代码"><span class="nav-number">1.4.</span> <span class="nav-text">理解代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证结果"><span class="nav-number">1.5.</span> <span class="nav-text">验证结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#摄像头扩展"><span class="nav-number">1.6.</span> <span class="nav-text">摄像头扩展</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nina</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

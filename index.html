@@ -245,6 +245,156 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/03/25/25行python代码实现人脸识别/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="nina">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="nina's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="nina's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/25/25行python代码实现人脸识别/" itemprop="url">
+                  25行python代码实现人脸识别
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T15:46:43+08:00">
+                2017-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="25行python代码实现人脸识别"><a href="#25行python代码实现人脸识别" class="headerlink" title="25行python代码实现人脸识别"></a>25行python代码实现人脸识别</h1><p>翻译自:<br><a href="https://realpython.com/blog/python/face-recognition-with-python/" target="_blank" rel="external">https://realpython.com/blog/python/face-recognition-with-python/</a></p>
+<hr>
+<p>在这篇文章我们将会看到一个神奇又简单的方式来开始使用Python和开源库OpenCV进行人脸识别</p>
+<pre><code>在你在评论区提任何问题前：
+    1.不要忽略这篇文章就尝试运行代码.你一定要理解代码不仅正确的运行也要对它进行故障排除.
+    2.确保你使用的是OpenCV v2.
+    3.你需要一个正常工作的摄像头来正确地运行这些脚本.
+    4.看看别人的评论或问题,可能你的问题已经解决.
+</code></pre><h2 id="OpenCV"><a href="#OpenCV" class="headerlink" title="OpenCV"></a>OpenCV</h2><p>OpenCV是计算机视觉最流行的库,起初是用C/C++写的,现在支持Python.</p>
+<p>OpenCV使用机器学习算法在一张图片里搜索人脸。对于一些和人脸一样复杂的东西,没有一个简单的测试会告诉你有没有发现人脸.相反,有数千种小的模式/特征会被匹配.这个算法打破了识别人脸的工作,甚至是成千上万的更小的,比特级别的任务,每一个都很容易解决.这些工作也被称为分类器。</p>
+<p>对于一些像人脸一样的东西,你可能有6000甚至更多的分类器,所有这些一定会匹配一个被检测到的脸部(当然,在误差范围内).但问题在于:对于人脸检测,这个算法是从图片的左上方开始并且通过一个一个小的数据块向下移动,对每一个数据块,都不断地问”这是一张脸吗?…这是一张脸吗?…这是一张脸吗?”对每一块做6000甚至更多的测试之后,你可能有数以百万的计算需要做,这有可能让你的计算机运算到停止。</p>
+<p>为了解决这个,OpenCV使用级联方式.什么是级联?最好的答案可以在字典中找到:一个瀑布或者是一系列瀑布.</p>
+<p>好比一系列的瀑布,OpenCV级联分为多阶段来检测人脸,突破性地解决了这个问题.对于每一个块,会先进行粗糙快速的测试.如果通过,会进行更细微详细的测试等等.算法可能有30-50个阶段或级联,如果全部阶段通过,这只会检测出一张脸.这个算法的优点是大部分的图片在前几个阶段就会返回否定的结果,这意味着这个算法不会浪费时间来测试所有的6000个特征.人脸检测现在可以实时处理完成,而不是好几个小时.</p>
+<h2 id="级联训练"><a href="#级联训练" class="headerlink" title="级联训练"></a>级联训练</h2><p>尽管理论可能听起来很复杂,但训练它非常简单.级联本身只是一堆包含OpenCV数据用于检测物体的XML文件.使用你想要的级联来初始化的你代码,然后它就会为你工作.</p>
+<p>自从人脸检测很常见之后,OpenCV带有一些内置的级联来检测从脸到眼睛到手和脚的一切.甚至还有一些用于非人类的级联.例如.如果你开着一家香蕉店并且想跟踪偷香蕉的人,这个东西会为你建立此用途的级联.</p>
+<h2 id="安装OpenCV"><a href="#安装OpenCV" class="headerlink" title="安装OpenCV"></a>安装OpenCV</h2><p>首先,你需要找到用于你的操作系统的正确的设置文件.</p>
+<p>我发现安装OpenCV是最难的一部分.如果你碰到奇怪的无法解释的错误,可能是由于库冲突,32/64位的差异等.我找到一个最简单的方法,在Linux虚拟机里从零开始安装OpenCV.</p>
+<p>一旦安装完成,你可以测试是否能工作,通过启动Python会话并输入:<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ python</div><div class="line">&gt;&gt;&gt; import cv2</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<p>如果你没有碰到任何错误,你可以继续下一部分.</p>
+<h2 id="理解代码"><a href="#理解代码" class="headerlink" title="理解代码"></a>理解代码</h2><p>让我们分解实际代码,你可以在repo中下载.face_detect.py脚本,abba.png图片和haarcascade_frontalface_default.xml.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 得到用户提供的值</div><div class="line">imagePath = sys.argv[1]</div><div class="line">cascPath = sys.argv[2]</div></pre></td></tr></table></figure></p>
+<p>你首先将图像和级联名称作为命令行参数传递进去.我们将会用Abba图像以及OpenCV提供的检测人脸的默认级联.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 创建一个haar级联</div><div class="line">faceCascade = cv2CascadeClassifier(cascPath)</div></pre></td></tr></table></figure></p>
+<p>现在我们创建了级联并且初始化成人脸的级联.这会把人脸的级联装载到存储器所以可以开始使用它了.记住,这个级联只是一个XML文件,包含用于检测人脸的数据。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 读取图像</div><div class="line">image = cv2.imread(imagePath)</div><div class="line">gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</div></pre></td></tr></table></figure></p>
+<p>在这里我们读取了图像并转化为灰度图.OpenCV的许多操作都是在灰度图的基础上完成的.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 检测图像上的人脸</div><div class="line">faces = faceCascade.detectMultiScale(</div><div class="line">	gray,</div><div class="line">	scaleFactor=1.1,</div><div class="line">	minNeighbors=5,</div><div class="line">	minSize=(30, 30),</div><div class="line">	flags = cv2.cv.CV_HAAR_SCALE_IMAGE</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>这个函数检测出真实的脸-这是代码的关键,所以让我们来看看选项:<br>    1.detectMultiScale 函数是一个检测物体的普通函数.当我们调用它为人脸的级联,他就检测人脸.第一个选项是灰度图.<br>    2.第二个是scaleFactor.因为一些人脸可能会靠摄像机很近,他们的脸会比更后面的人大.这是比例因子补偿.<br>    3.这个检测算法采用移动窗口来检测目标.minNeighbors 定义了在宣布人脸被找到之前,当前窗口附近有多少目标被检测到.minSize,同时定义了每一个窗口大小</p>
+<pre><code>我使用的是这些字段的常用值.在实际生活中,你会尝试不用值的窗口大小,比例因子,等等.直到你找到一个对你最有用的值.
+</code></pre><p>这个函数会返回一个矩形列表,在它认为是脸的地方.然后,我们可以圈出它认为找到的地方.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">print &quot;Found &#123;0&#125; faces!&quot;.format(len(faces))</div><div class="line"></div><div class="line"># 在脸周围画出矩形边框</div><div class="line">for (x, y, w, h) in faces:</div><div class="line">	cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0),2)</div></pre></td></tr></table></figure></p>
+<p>这个函数返回4个值:矩形的x和y位置,和矩形的宽高(w, h).<br>我们用这些值来画出矩形,通过内置的rectangle()函数.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cv2.imshow(&quot;Faces found&quot;, image)</div><div class="line">cv2.waitKey(0)</div></pre></td></tr></table></figure></p>
+<p>最后,我们显示图像,并等待用户按下一个键为止.</p>
+<h2 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h2><p>验证Abba图片:<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ python face_detect.py abba.png haarcascade_frontalface_default.xml</div></pre></td></tr></table></figure></p>
+<h2 id="摄像头扩展"><a href="#摄像头扩展" class="headerlink" title="摄像头扩展"></a>摄像头扩展</h2><p>如果你想使用摄像头该怎么办?OpenCV从摄像头抓取每一帧,然后你可以通过处理每一帧来检测人脸.你需要一台强大的计算机,即使我已经用了5年的笔记本看起来应该没问题,只要不乱搞.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/03/19/opencv安装过程及错误解决办法/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -334,7 +484,7 @@
 <p>把3rdparty里的ippicv文件夹删除，然后在cmake-gui点击configurate<br>还是会出错，但不会卡在那(卡在那是因为程序想下载，但又下载不下来，就一直卡在这里，卡很久之后才会提示错误)。不用管，直接点击generate(注意要把WITH_IPP的勾取消，否则后面编译会出错)，显示完成。</p>
 <p>解决办法二：<br><a href="http://blog.csdn.net/carson2005/article/details/46381351" target="_blank" rel="external">http://blog.csdn.net/carson2005/article/details/46381351</a><br>找到ippv的linux版本，替换那个压缩文件之后再configurate<br>这里也要把WITH_IPP取消。<br>(这个办法不确定能不能行得通。因为我开着两个虚拟机试的，这个办法是在Ubuntu12.04上，配置、生成的时候没有问题，但是在后面build文件夹  make 的时候会报错，原因是ippicv，但我已经把IPP的勾点掉了的，不知道为什么还会提示这个。网上找的也说勾点掉就可以。试了好几次都这样，我就放弃了，毕竟在16.04已经可以用了，就不纠结了0.0.继续往下看….)</p>
 <p>====================================================<br>然后直接去试试example(在opencv-3.2.0/sample/cpp/example_cmake)，返回<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Could not find a package configuration file provided by &quot;OpenCV&quot; with any</div><div class="line">of the following names:</div><div class="line"></div><div class="line">  OpenCVConfig.cmake</div><div class="line">  opencv-config.cmake</div><div class="line"></div><div class="line">Add the installation prefix of &quot;OpenCV&quot; to CMAKE_PREFIX_PATH or set</div><div class="line">&quot;OpenCV_DIR&quot; to a directory containing one of the above files.  If &quot;OpenCV&quot;</div><div class="line">provides a separate development package or SDK, be sure it has been</div><div class="line">installed.</div></pre></td></tr></table></figure></p>
-<p>一直以为是安装出问题，又重装好几遍还是一样，然后又去找文件设置路径。。。后面在<a href="http://stackoverflow.com/questions/27127153/cmake-error-at-cmakelists-txt-cmake-prefix-path" target="_blank" rel="external">stackoverflow</a>看到，<br>要配置OpenCVConfig.cmake的路径，<br>先搜索这个文件，发现是在build目录下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># sudo cmake -DOpenCV_DIR=&quot;/home/user/opencv-3.2_build/&quot;</div></pre></td></tr></table></figure></p>
+<p>一直以为是安装出问题，又重装好几遍还是一样，然后又去找文件设置路径。。。后面在<a href="http://stackoverflow.com/questions/27127153/cmake-error-at-cmakelists-txt-cmake-prefix-path" target="_blank" rel="external">stackoverflow</a>看到，<br>要配置OpenCVConfig.cmake的路径，<br>先搜索这个文件，发现是在build目录下<br>根据上面的错误，需要指定 OpenCV_DIR 路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># sudo cmake -DOpenCV_DIR=&quot;/home/user/opencv-3.2_build/&quot;</div></pre></td></tr></table></figure></p>
 <p>返回<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-- OpenCV library status:</div><div class="line">--     version: 3.2.0</div><div class="line">--     libraries: opencv_calib3d;opencv_core;opencv_features2d;opencv_flann;opencv_highgui;opencv_imgcodecs;opencv_imgproc;opencv_ml;opencv_objdetect;opencv_photo;opencv_shape;opencv_stitching;opencv_superres;opencv_video;opencv_videoio;opencv_videostab</div><div class="line">--     include path: /home/user/opencv-3.2_build;/home/user/opencv-3.2.0/include;/home/user/opencv-3.2.0/include/opencv;/home/user/opencv-3.2.0/modules/core/include;/home/user/opencv-3.2.0/modules/flann/include;/home/user/opencv-3.2.0/modules/imgproc/include;/home/user/opencv-3.2.0/modules/ml/include;/home/user/opencv-3.2.0/modules/photo/include;/home/user/opencv-3.2.0/modules/video/include;/home/user/opencv-3.2.0/modules/imgcodecs/include;/home/user/opencv-3.2.0/modules/shape/include;/home/user/opencv-3.2.0/modules/videoio/include;/home/user/opencv-3.2.0/modules/highgui/include;/home/user/opencv-3.2.0/modules/objdetect/include;/home/user/opencv-3.2.0/modules/superres/include;/home/user/opencv-3.2.0/modules/ts/include;/home/user/opencv-3.2.0/modules/features2d/include;/home/user/opencv-3.2.0/modules/calib3d/include;/home/user/opencv-3.2.0/modules/stitching/include;/home/user/opencv-3.2.0/modules/videostab/include</div><div class="line">-- Configuring done</div><div class="line">-- Generating done</div><div class="line">-- Build files have been written to: /home/user/opencv-3.2.0/samples/cpp/example_cmake</div></pre></td></tr></table></figure></p>
 <p>说明对当前所在文件夹编译了，现在应该能用了吧。。。。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># sudo cmake . //对当前文件夹编译,有个空格</div><div class="line"># sudo make</div><div class="line"></div><div class="line">Scanning dependencies of target opencv_example</div><div class="line">[ 50%] Building CXX object CMakeFiles/opencv_example.dir/example.cpp.o</div><div class="line">make[2]: *** No rule to make target &apos;/home/user/opencv-3.2_build/lib/libopencv_shape.so.3.2.0&apos;, needed by &apos;opencv_example&apos;.  Stop.</div><div class="line">CMakeFiles/Makefile2:67: recipe for target &apos;CMakeFiles/opencv_example.dir/all&apos; failed</div><div class="line">make[1]: *** [CMakeFiles/opencv_example.dir/all] Error 2</div><div class="line">Makefile:83: recipe for target &apos;all&apos; failed</div><div class="line">make: *** [all] Error 2</div></pre></td></tr></table></figure></p>
 <p>忘记了一件最重要的事！！！没有进build文件夹执行make和make install！之前好几次不能运行给搞懵了 = =.<br>所以提示没有.so文件</p>
@@ -342,8 +492,11 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># cd /home/user/opencv_build</div><div class="line"># make</div><div class="line"># make install</div></pre></td></tr></table></figure>
 <p>结束之后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># cd /home/user/opencv-3.2.0/samples/cpp/example_cmake</div><div class="line"># sudo cmake .</div><div class="line"># sudo make </div><div class="line">[ 50%] Linking CXX executable opencv_example</div><div class="line">[100%] Built target opencv_example</div><div class="line">./opencv_example</div></pre></td></tr></table></figure></p>
 <p><img src="/img/opencv-1.png" alt="opencv"></p>
-<p>其他程序暂未测试——–</p>
-<p>参考链接：<br><a href="http://blog.csdn.net/u011783201/article/details/52086560" target="_blank" rel="external">http://blog.csdn.net/u011783201/article/details/52086560</a><br><a href="http://www.opencv.org.cn/index.php/Download" target="_blank" rel="external">http://www.opencv.org.cn/index.php/Download</a><br><a href="http://opencv.org/downloads.html" target="_blank" rel="external">http://opencv.org/downloads.html</a><br><a href="http://blog.csdn.net/carson2005/article/details/46381351" target="_blank" rel="external">http://blog.csdn.net/carson2005/article/details/46381351</a><br><a href="http://stackoverflow.com/questions/27127153/cmake-error-at-cmakelists-txt-cmake-prefix-path" target="_blank" rel="external">http://stackoverflow.com/questions/27127153/cmake-error-at-cmakelists-txt-cmake-prefix-path</a></p>
+<p>测试例子——–<br>官网看到的测试代码<br>在桌面新建文件夹  DisplayImage<br>里面新建两个文件：DisplayImage.cpp<br>                  CMakeLists.txt<br>DisplayImage.cpp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;opencv2/opencv.hpp&gt;</div><div class="line"></div><div class="line">using namespace cv;</div><div class="line"></div><div class="line">int main(int argc, char** argv )</div><div class="line">&#123;</div><div class="line">    if ( argc != 2 )</div><div class="line">    &#123;</div><div class="line">        printf(&quot;usage: DisplayImage.out &lt;Image_Path&gt;\n&quot;);</div><div class="line">        return -1;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    Mat image;</div><div class="line">    image = imread( argv[1], 1 );</div><div class="line"></div><div class="line">    if ( !image.data )</div><div class="line">    &#123;</div><div class="line">        printf(&quot;No image data \n&quot;);</div><div class="line">        return -1;</div><div class="line">    &#125;</div><div class="line">    namedWindow(&quot;Display Image&quot;, WINDOW_AUTOSIZE );</div><div class="line">    imshow(&quot;Display Image&quot;, image);</div><div class="line"></div><div class="line">    waitKey(0);</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>CMakeLists.txt<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cmake_minimum_required(VERSION 2.8)</div><div class="line">project( DisplayImage )</div><div class="line">find_package( OpenCV REQUIRED )</div><div class="line">include_directories( $&#123;OpenCV_INCLUDE_DIRS&#125; )</div><div class="line">add_executable( DisplayImage DisplayImage.cpp )</div><div class="line">target_link_libraries( DisplayImage $&#123;OpenCV_LIBS&#125; )</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># sudo cmake .</div><div class="line"># sudo make </div><div class="line"># ./DisplayImage test.jpg  //要传入图片。根据代码意思，只是打开一张图片</div></pre></td></tr></table></figure>
+<p><img src="/img/opencv-2.png" alt="opencv"></p>
+<p>参考链接：<br><a href="http://blog.csdn.net/u011783201/article/details/52086560" target="_blank" rel="external">http://blog.csdn.net/u011783201/article/details/52086560</a><br><a href="http://www.opencv.org.cn/index.php/Download" target="_blank" rel="external">http://www.opencv.org.cn/index.php/Download</a><br><a href="http://opencv.org/downloads.html" target="_blank" rel="external">http://opencv.org/downloads.html</a><br><a href="http://blog.csdn.net/carson2005/article/details/46381351" target="_blank" rel="external">http://blog.csdn.net/carson2005/article/details/46381351</a><br><a href="http://stackoverflow.com/questions/27127153/cmake-error-at-cmakelists-txt-cmake-prefix-path" target="_blank" rel="external">http://stackoverflow.com/questions/27127153/cmake-error-at-cmakelists-txt-cmake-prefix-path</a><br><a href="http://docs.opencv.org/3.0-last-rst/doc/tutorials/introduction/linux_gcc_cmake/linux_gcc_cmake.html" target="_blank" rel="external">http://docs.opencv.org/3.0-last-rst/doc/tutorials/introduction/linux_gcc_cmake/linux_gcc_cmake.html</a><br><a href="https://yq.aliyun.com/articles/63300" target="_blank" rel="external">https://yq.aliyun.com/articles/63300</a></p>
 <font color="red" size="5">Mail:605971081@qq.com</font>
           
         
@@ -1071,7 +1224,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
