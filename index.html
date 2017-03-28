@@ -245,6 +245,153 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/03/28/使用摄像头-python进行人脸检测/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="nina">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="nina's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="nina's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/使用摄像头-python进行人脸检测/" itemprop="url">
+                  使用摄像头+python进行人脸检测
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T20:37:41+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="使用摄像头-python进行人脸检测"><a href="#使用摄像头-python进行人脸检测" class="headerlink" title="使用摄像头+python进行人脸检测"></a>使用摄像头+python进行人脸检测</h2><p>翻译自：<br><a href="https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/" target="_blank" rel="external">https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/</a></p>
+<hr>
+<p>这篇博客文章是《25行python代码实现人脸识别》的后续，所以确保你已经阅读过了那篇文章。</p>
+<p>如前篇文章所述，我们可以很容易地把图像中检测人脸的技术通过摄像头应用到视频中–这就是这篇文章将会详细介绍的。</p>
+<pre><code>在你在评论区提任何问题前：
+    1.不要忽略这篇文章就尝试运行代码.你一定要理解代码不仅正确的运行也要对它进行故障排除.
+    2.确保你使用的是OpenCV v2.
+    3.你需要一个正常工作的摄像头来正确地运行这些脚本.
+    4.看看别人的评论或问题,可能你的问题已经解决.
+</code></pre><p>需要准备的：<br>    1、安装OpenCV（详细请看以前的文章）<br>    2、一个可以工作的摄像头</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>让我们直接解读代码，从这个<a href="https://github.com/shantnu/Webcam-Face-Detect" target="_blank" rel="external">仓库</a>获取。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">import cv2</div><div class="line">import sys</div><div class="line"></div><div class="line">cascPath = sys.argv[1]</div><div class="line">faceCascade = cv2.CascadeClassifier(cascPath)</div><div class="line"></div><div class="line">video_capture= cv2.VideoCapture(0)</div><div class="line"></div><div class="line">while True:</div><div class="line">	# 逐帧抓取</div><div class="line">	ret, frame = video_capture.read()</div><div class="line">	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)</div><div class="line">	</div><div class="line">	faces = faceCascade.detectMultiScale(</div><div class="line">		gray,</div><div class="line">		scaleFactor=1.1,</div><div class="line">		minNeighbors=5,</div><div class="line">		minSize=(30, 30),</div><div class="line">		flags=cv2.cv.CV_HAAR_SCALE_IMAGE</div><div class="line">		)</div><div class="line">		</div><div class="line">	# 在脸部周围画矩形</div><div class="line">	for (x, y, w, h) in faces:</div><div class="line">	cv2.rectangle(frame, (x,y), (x+w, y+h), (0, 255, 0), 2)</div><div class="line">	</div><div class="line">	# 显示处理过的结果</div><div class="line">	cv2.imshow(&apos;Video&apos;, frame)</div><div class="line">	</div><div class="line">	if cv2.waitKey(1) &amp; 0xFF == ord(&apos;q&apos;):</div><div class="line">		break</div><div class="line">		</div><div class="line">	# 当所有结束，释放捕获动作</div><div class="line">	</div><div class="line">video_capture.release()</div><div class="line">cv2.destoryAllwindows()</div></pre></td></tr></table></figure></p>
+<p>现在，我们分解这些代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import cv2</div><div class="line">import sys</div><div class="line"></div><div class="line">cascPath = sys.argv[1]</div><div class="line">faceCascade = cv2.CascadeClassifier(cascPath)</div></pre></td></tr></table></figure></p>
+<p>你对这个应该很熟悉。我们正在创建一个face cascade（脸部级联），就像我们在图片的例子上做的一样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">video_capture = cv2.VideoCapture(0)</div></pre></td></tr></table></figure></p>
+<p>这一行将视频源设置为默认摄像头，OpenCV可以很简单地获取它。<br>    注意：你也可以给它一个文件名，Python会读视频文件。然而，由于OpenCV自身不能解码解压视频，你需要安装ffmpeg。ffmpeg作为OpenCV的前端，并且理想情况下，视频会被直接编码给OpenCV使用。这不容易做到，尤其是在Windows。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">while True:</div><div class="line">    # Capture frame-by-frame</div><div class="line">    ret, frame = video_capture.read()</div></pre></td></tr></table></figure>
+<p>这里，我们捕获到了视频。read()函数从视频文件里读取一帧，在本例中，视频文件是摄像头。这个会返回：<br>1、读取实时视频帧（每次循环读取一帧）<br>2、一个返回值</p>
+<p>返回值告诉我们是否所有帧都读取完，当我们读取视频文件时会有这种情况。当我们从摄像头读取就不用管这个了，因为我们可以一直记录，所以我们可以忽略这个。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># Capture frame-by-frame</div><div class="line">ret, frame = video_capture.read()</div><div class="line"></div><div class="line">gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)</div><div class="line"></div><div class="line">faces = faceCascade.detectMultiScale(</div><div class="line">    gray,</div><div class="line">    scaleFactor=1.1,</div><div class="line">    minNeighbors=5,</div><div class="line">    minSize=(30, 30),</div><div class="line">    flags=cv2.cv.CV_HAAR_SCALE_IMAGE</div><div class="line">)</div><div class="line"></div><div class="line"># Draw a rectangle around the faces</div><div class="line">for (x, y, w, h) in faces:</div><div class="line">    cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)</div><div class="line"></div><div class="line"># Display the resulting frame</div><div class="line">cv2.imshow(&apos;Video&apos;, frame)</div></pre></td></tr></table></figure></p>
+<p>又是这个，这些代码应该很熟悉。我们只是从我们的捕获帧中搜索人脸。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">if cv2.waitKey(1) &amp; 0xFF == ord(&apos;q&apos;):</div><div class="line">    break</div></pre></td></tr></table></figure></p>
+<p>我们等待’q’按键被按下。如果按下，我们就会退出这个脚本。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># When everything is done, release the capture</div><div class="line">video_capture.release()</div><div class="line">cv2.destroyAllWindows()</div></pre></td></tr></table></figure></p>
+<p>这些只是在清理残留的东西。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>！！！视频请查看原网站<br>所以，手里拿着驾驶证的是我。你可以看到，算法跟踪真实的我和照片上的我。注意当我慢慢移动，算法能跟上。当我更快一点移动我的手到我的脸上时，然而，它开始混乱，错把我的手腕当成脸。</p>
+<p>就像我在文章最后说的一样，基于机器学习的算法，很少能达到100%的准确率。我们不是在那个，机械战警驾驶它的摩托车以时速100英里，使用低质量的闭路电视摄像机也能追踪到罪犯的阶段…还没到那个阶段。</p>
+<p>代码一帧一帧地搜索脸部，所以这将会耗费相当多的处理能力。<br>举个例子，在我5年的旧笔记本上，这几乎消耗了90%的CPU。</p>
+<h1 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h1><p>好的，所以你知道了如何检测人脸。但如果你想检测你自己的某个物体该怎么办，比如你的车、电视或你最喜欢的玩具。<br>OpenCV允许你创建自己的级联，但这个过程没有很好的记录。这是一个<a href="http://coding-robin.de/2013/07/22/train-your-own-opencv-haar-classifier.html" target="_blank" rel="external">博客文章</a>，告诉你怎么训练自己的级联来检测香蕉。</p>
+<p>如果你想更进一步，识别具体的脸–或许是在众多陌生人之中检测且识别出你的脸–这是非常困难的任务。主要是由于需要有大量的图像预处理。但是如果你想应对这个挑战，用机器学习算法还是有可能的，<a href="http://scikit-learn.sourceforge.net/0.6/auto_examples/applications/plot_face_recognition.html" target="_blank" rel="external">这里</a>有介绍。</p>
+<hr>
+<h2 id="本地测试"><a href="#本地测试" class="headerlink" title="本地测试"></a>本地测试</h2><p>user@ubuntu:~/Webcam-Face-Detect$ python webcam_cv3.py haarcascade_frontalface_default.xml<br>Corrupt JPEG data: 1 extraneous bytes before marker 0xd4<br>Corrupt JPEG data: 12 extraneous bytes before marker 0xd5<br>……..<br><img src="/img/opencv-4.png" alt="opencv"><br><img src="/img/opencv-5.png" alt="opencv"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/03/25/25行python代码实现人脸识别/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -344,7 +491,7 @@
 <p>我发现安装OpenCV是最难的一部分.如果你碰到奇怪的无法解释的错误,可能是由于库冲突,32/64位的差异等.我找到一个最简单的方法,在Linux虚拟机里从零开始安装OpenCV.</p>
 <p>一旦安装完成,你可以测试是否能工作,通过启动Python会话并输入:<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ python</div><div class="line">&gt;&gt;&gt; import cv2</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
 <p>如果你没有碰到任何错误,你可以继续下一部分.</p>
-<h2 id="理解代码"><a href="#理解代码" class="headerlink" title="理解代码"></a>理解代码</h2><p>让我们分解实际代码,你可以在repo中下载.face_detect.py脚本,abba.png图片和haarcascade_frontalface_default.xml.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 得到用户提供的值</div><div class="line">imagePath = sys.argv[1]</div><div class="line">cascPath = sys.argv[2]</div></pre></td></tr></table></figure></p>
+<h2 id="理解代码"><a href="#理解代码" class="headerlink" title="理解代码"></a>理解代码</h2><p>让我们分解实际代码,你可以在<a href="https://github.com/shantnu/FaceDetect/" target="_blank" rel="external">repo</a>中下载.face_detect.py脚本,abba.png图片和haarcascade_frontalface_default.xml.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 得到用户提供的值</div><div class="line">imagePath = sys.argv[1]</div><div class="line">cascPath = sys.argv[2]</div></pre></td></tr></table></figure></p>
 <p>你首先将图像和级联名称作为命令行参数传递进去.我们将会用Abba图像以及OpenCV提供的检测人脸的默认级联.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 创建一个haar级联</div><div class="line">faceCascade = cv2CascadeClassifier(cascPath)</div></pre></td></tr></table></figure></p>
 <p>现在我们创建了级联并且初始化成人脸的级联.这会把人脸的级联装载到存储器所以可以开始使用它了.记住,这个级联只是一个XML文件,包含用于检测人脸的数据。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 读取图像</div><div class="line">image = cv2.imread(imagePath)</div><div class="line">gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</div></pre></td></tr></table></figure></p>
 <p>在这里我们读取了图像并转化为灰度图.OpenCV的许多操作都是在灰度图的基础上完成的.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 检测图像上的人脸</div><div class="line">faces = faceCascade.detectMultiScale(</div><div class="line">	gray,</div><div class="line">	scaleFactor=1.1,</div><div class="line">	minNeighbors=5,</div><div class="line">	minSize=(30, 30),</div><div class="line">	flags = cv2.cv.CV_HAAR_SCALE_IMAGE</div><div class="line">)</div></pre></td></tr></table></figure></p>
@@ -354,6 +501,7 @@
 <p>这个函数返回4个值:矩形的x和y位置,和矩形的宽高(w, h).<br>我们用这些值来画出矩形,通过内置的rectangle()函数.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cv2.imshow(&quot;Faces found&quot;, image)</div><div class="line">cv2.waitKey(0)</div></pre></td></tr></table></figure></p>
 <p>最后,我们显示图像,并等待用户按下一个键为止.</p>
 <h2 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h2><p>验证Abba图片:<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ python face_detect.py abba.png haarcascade_frontalface_default.xml</div></pre></td></tr></table></figure></p>
+<p><img src="/img/opencv-3.png" alt="opencv"></p>
 <h2 id="摄像头扩展"><a href="#摄像头扩展" class="headerlink" title="摄像头扩展"></a>摄像头扩展</h2><p>如果你想使用摄像头该怎么办?OpenCV从摄像头抓取每一帧,然后你可以通过处理每一帧来检测人脸.你需要一台强大的计算机,即使我已经用了5年的笔记本看起来应该没问题,只要不乱搞.</p>
 
           
@@ -1006,7 +1154,7 @@
       
         
           
-            <h1 id="部署完成后，网页只显示文本，不显示样式，点击其他链接会出现404错误"><a href="#部署完成后，网页只显示文本，不显示样式，点击其他链接会出现404错误" class="headerlink" title="部署完成后，网页只显示文本，不显示样式，点击其他链接会出现404错误"></a>部署完成后，网页只显示文本，不显示样式，点击其他链接会出现404错误</h1><p>按照网上的教程部署好所有需要的内容<br>打开本地调试    localhost:4000    显示正常<br>但用github项目设置中给的网址    <a href="https://xxx.github.io/xxx.github.io" target="_blank" rel="external">https://xxx.github.io/xxx.github.io</a>    进去只显示文本内容，所有网页样式都未显示<br>浏览器F12查看，显示js，css文件都是404。</p>
+            <h2 id="部署完成后，网页只显示文本，不显示样式，点击其他链接会出现404错误"><a href="#部署完成后，网页只显示文本，不显示样式，点击其他链接会出现404错误" class="headerlink" title="部署完成后，网页只显示文本，不显示样式，点击其他链接会出现404错误"></a>部署完成后，网页只显示文本，不显示样式，点击其他链接会出现404错误</h2><p>按照网上的教程部署好所有需要的内容<br>打开本地调试    localhost:4000    显示正常<br>但用github项目设置中给的网址    <a href="https://xxx.github.io/xxx.github.io" target="_blank" rel="external">https://xxx.github.io/xxx.github.io</a>    进去只显示文本内容，所有网页样式都未显示<br>浏览器F12查看，显示js，css文件都是404。</p>
 <p>在网上找资料未果，后面把仓库删了重新创建也不行。<br>后面在一个博客里看到说仓库名称一定要是    user_name.github.io    否则会出错。</p>
 <p>重新创建仓库，使用ly-nina.github.io为名称，将本地博客内容deploy上去后，<br>进入Settings，发现Github Pages已经自动创建网页，心里想肯定这次有用了（因为前面我是自己点创建的）<br>果不其然，网页正常加载。</p>
 <p>这里给自己提个醒，网上有些资料有坑，要多找资料对比。前面看的教程，没有明确表示Repository name一定且只能写自己github的名称，并且教程给的图片上名称就不一样。[捂脸]</p>
@@ -1224,7 +1372,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

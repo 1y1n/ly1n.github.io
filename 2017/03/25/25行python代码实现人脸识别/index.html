@@ -101,7 +101,8 @@
 在这篇文章我们将会看到一个神奇又简单的方式来开始使用Python和开源库OpenCV进行人脸识别
 在你在评论区提任何问题前：
     1.不要忽略这篇文章就尝试运行代码.你一定要理解代码不仅正确的运行也要对它进行故障排除.">
-<meta property="og:updated_time" content="2017-03-25T08:20:21.778Z">
+<meta property="og:image" content="https://ly-nina.github.io/img/opencv-3.png">
+<meta property="og:updated_time" content="2017-03-25T09:58:31.105Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="25行python代码实现人脸识别">
 <meta name="twitter:description" content="25行python代码实现人脸识别翻译自:https://realpython.com/blog/python/face-recognition-with-python/
@@ -109,6 +110,7 @@
 在这篇文章我们将会看到一个神奇又简单的方式来开始使用Python和开源库OpenCV进行人脸识别
 在你在评论区提任何问题前：
     1.不要忽略这篇文章就尝试运行代码.你一定要理解代码不仅正确的运行也要对它进行故障排除.">
+<meta name="twitter:image" content="https://ly-nina.github.io/img/opencv-3.png">
 
 
 
@@ -353,7 +355,7 @@
 <p>我发现安装OpenCV是最难的一部分.如果你碰到奇怪的无法解释的错误,可能是由于库冲突,32/64位的差异等.我找到一个最简单的方法,在Linux虚拟机里从零开始安装OpenCV.</p>
 <p>一旦安装完成,你可以测试是否能工作,通过启动Python会话并输入:<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ python</div><div class="line">&gt;&gt;&gt; import cv2</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
 <p>如果你没有碰到任何错误,你可以继续下一部分.</p>
-<h2 id="理解代码"><a href="#理解代码" class="headerlink" title="理解代码"></a>理解代码</h2><p>让我们分解实际代码,你可以在repo中下载.face_detect.py脚本,abba.png图片和haarcascade_frontalface_default.xml.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 得到用户提供的值</div><div class="line">imagePath = sys.argv[1]</div><div class="line">cascPath = sys.argv[2]</div></pre></td></tr></table></figure></p>
+<h2 id="理解代码"><a href="#理解代码" class="headerlink" title="理解代码"></a>理解代码</h2><p>让我们分解实际代码,你可以在<a href="https://github.com/shantnu/FaceDetect/" target="_blank" rel="external">repo</a>中下载.face_detect.py脚本,abba.png图片和haarcascade_frontalface_default.xml.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 得到用户提供的值</div><div class="line">imagePath = sys.argv[1]</div><div class="line">cascPath = sys.argv[2]</div></pre></td></tr></table></figure></p>
 <p>你首先将图像和级联名称作为命令行参数传递进去.我们将会用Abba图像以及OpenCV提供的检测人脸的默认级联.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 创建一个haar级联</div><div class="line">faceCascade = cv2CascadeClassifier(cascPath)</div></pre></td></tr></table></figure></p>
 <p>现在我们创建了级联并且初始化成人脸的级联.这会把人脸的级联装载到存储器所以可以开始使用它了.记住,这个级联只是一个XML文件,包含用于检测人脸的数据。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 读取图像</div><div class="line">image = cv2.imread(imagePath)</div><div class="line">gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</div></pre></td></tr></table></figure></p>
 <p>在这里我们读取了图像并转化为灰度图.OpenCV的许多操作都是在灰度图的基础上完成的.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 检测图像上的人脸</div><div class="line">faces = faceCascade.detectMultiScale(</div><div class="line">	gray,</div><div class="line">	scaleFactor=1.1,</div><div class="line">	minNeighbors=5,</div><div class="line">	minSize=(30, 30),</div><div class="line">	flags = cv2.cv.CV_HAAR_SCALE_IMAGE</div><div class="line">)</div></pre></td></tr></table></figure></p>
@@ -363,6 +365,7 @@
 <p>这个函数返回4个值:矩形的x和y位置,和矩形的宽高(w, h).<br>我们用这些值来画出矩形,通过内置的rectangle()函数.<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cv2.imshow(&quot;Faces found&quot;, image)</div><div class="line">cv2.waitKey(0)</div></pre></td></tr></table></figure></p>
 <p>最后,我们显示图像,并等待用户按下一个键为止.</p>
 <h2 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h2><p>验证Abba图片:<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ python face_detect.py abba.png haarcascade_frontalface_default.xml</div></pre></td></tr></table></figure></p>
+<p><img src="/img/opencv-3.png" alt="opencv"></p>
 <h2 id="摄像头扩展"><a href="#摄像头扩展" class="headerlink" title="摄像头扩展"></a>摄像头扩展</h2><p>如果你想使用摄像头该怎么办?OpenCV从摄像头抓取每一帧,然后你可以通过处理每一帧来检测人脸.你需要一台强大的计算机,即使我已经用了5年的笔记本看起来应该没问题,只要不乱搞.</p>
 
       
@@ -403,6 +406,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/使用摄像头-python进行人脸检测/" rel="prev" title="使用摄像头+python进行人脸检测">
+                使用摄像头+python进行人脸检测 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -474,7 +481,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
