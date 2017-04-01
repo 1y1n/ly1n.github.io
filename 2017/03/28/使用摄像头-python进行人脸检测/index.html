@@ -87,27 +87,30 @@
 
 
 
-<meta name="description" content="使用摄像头+python进行人脸检测翻译自：https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/
+<meta name="description" content="使用摄像头+Python进行人脸检测翻译自：https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/
+译者：nina
 
 这篇博客文章是《25行python代码实现人脸识别》的后续，所以确保你已经阅读过了那篇文章。
-如前篇文章所述，我们可以很容易地把图像中检测人脸的技术通过摄像头应用到视频中–这就是这篇文章将会详细介绍的。">
+如前篇文章所述，我们可以很容易地把图像中检测人脸的技术通过摄像头应用到视频中–这就是这篇文章">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用摄像头+python进行人脸检测">
+<meta property="og:title" content="使用摄像头+Python进行人脸检测">
 <meta property="og:url" content="https://ly-nina.github.io/2017/03/28/使用摄像头-python进行人脸检测/index.html">
 <meta property="og:site_name" content="nina's blog">
-<meta property="og:description" content="使用摄像头+python进行人脸检测翻译自：https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/
+<meta property="og:description" content="使用摄像头+Python进行人脸检测翻译自：https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/
+译者：nina
 
 这篇博客文章是《25行python代码实现人脸识别》的后续，所以确保你已经阅读过了那篇文章。
-如前篇文章所述，我们可以很容易地把图像中检测人脸的技术通过摄像头应用到视频中–这就是这篇文章将会详细介绍的。">
+如前篇文章所述，我们可以很容易地把图像中检测人脸的技术通过摄像头应用到视频中–这就是这篇文章">
 <meta property="og:image" content="https://ly-nina.github.io/img/opencv-4.png">
 <meta property="og:image" content="https://ly-nina.github.io/img/opencv-5.png">
-<meta property="og:updated_time" content="2017-03-28T13:08:03.169Z">
+<meta property="og:updated_time" content="2017-03-28T13:17:13.544Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用摄像头+python进行人脸检测">
-<meta name="twitter:description" content="使用摄像头+python进行人脸检测翻译自：https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/
+<meta name="twitter:title" content="使用摄像头+Python进行人脸检测">
+<meta name="twitter:description" content="使用摄像头+Python进行人脸检测翻译自：https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/
+译者：nina
 
 这篇博客文章是《25行python代码实现人脸识别》的后续，所以确保你已经阅读过了那篇文章。
-如前篇文章所述，我们可以很容易地把图像中检测人脸的技术通过摄像头应用到视频中–这就是这篇文章将会详细介绍的。">
+如前篇文章所述，我们可以很容易地把图像中检测人脸的技术通过摄像头应用到视频中–这就是这篇文章">
 <meta name="twitter:image" content="https://ly-nina.github.io/img/opencv-4.png">
 
 
@@ -142,7 +145,7 @@
 
 
 
-  <title> 使用摄像头+python进行人脸检测 | nina's blog </title>
+  <title> 使用摄像头+Python进行人脸检测 | nina's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -283,7 +286,7 @@
             
             
               
-                使用摄像头+python进行人脸检测
+                使用摄像头+Python进行人脸检测
               
             
           </h1>
@@ -334,7 +337,8 @@
       
 
       
-        <h2 id="使用摄像头-python进行人脸检测"><a href="#使用摄像头-python进行人脸检测" class="headerlink" title="使用摄像头+python进行人脸检测"></a>使用摄像头+python进行人脸检测</h2><p>翻译自：<br><a href="https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/" target="_blank" rel="external">https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/</a></p>
+        <h2 id="使用摄像头-Python进行人脸检测"><a href="#使用摄像头-Python进行人脸检测" class="headerlink" title="使用摄像头+Python进行人脸检测"></a>使用摄像头+Python进行人脸检测</h2><p>翻译自：<br><a href="https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/" target="_blank" rel="external">https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/</a></p>
+<p>译者：nina</p>
 <hr>
 <p>这篇博客文章是《25行python代码实现人脸识别》的后续，所以确保你已经阅读过了那篇文章。</p>
 <p>如前篇文章所述，我们可以很容易地把图像中检测人脸的技术通过摄像头应用到视频中–这就是这篇文章将会详细介绍的。</p>
@@ -344,7 +348,7 @@
     3.你需要一个正常工作的摄像头来正确地运行这些脚本.
     4.看看别人的评论或问题,可能你的问题已经解决.
 </code></pre><p>需要准备的：<br>    1、安装OpenCV（详细请看以前的文章）<br>    2、一个可以工作的摄像头</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>让我们直接解读代码，从这个<a href="https://github.com/shantnu/Webcam-Face-Detect" target="_blank" rel="external">仓库</a>获取。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">import cv2</div><div class="line">import sys</div><div class="line"></div><div class="line">cascPath = sys.argv[1]</div><div class="line">faceCascade = cv2.CascadeClassifier(cascPath)</div><div class="line"></div><div class="line">video_capture= cv2.VideoCapture(0)</div><div class="line"></div><div class="line">while True:</div><div class="line">	# 逐帧抓取</div><div class="line">	ret, frame = video_capture.read()</div><div class="line">	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)</div><div class="line">	</div><div class="line">	faces = faceCascade.detectMultiScale(</div><div class="line">		gray,</div><div class="line">		scaleFactor=1.1,</div><div class="line">		minNeighbors=5,</div><div class="line">		minSize=(30, 30),</div><div class="line">		flags=cv2.cv.CV_HAAR_SCALE_IMAGE</div><div class="line">		)</div><div class="line">		</div><div class="line">	# 在脸部周围画矩形</div><div class="line">	for (x, y, w, h) in faces:</div><div class="line">	cv2.rectangle(frame, (x,y), (x+w, y+h), (0, 255, 0), 2)</div><div class="line">	</div><div class="line">	# 显示处理过的结果</div><div class="line">	cv2.imshow(&apos;Video&apos;, frame)</div><div class="line">	</div><div class="line">	if cv2.waitKey(1) &amp; 0xFF == ord(&apos;q&apos;):</div><div class="line">		break</div><div class="line">		</div><div class="line">	# 当所有结束，释放捕获动作</div><div class="line">	</div><div class="line">video_capture.release()</div><div class="line">cv2.destoryAllwindows()</div></pre></td></tr></table></figure></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>让我们直接解读代码，从这个<a href="https://github.com/shantnu/Webcam-Face-Detect" target="_blank" rel="external">github仓库</a>获取。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">import cv2</div><div class="line">import sys</div><div class="line"></div><div class="line">cascPath = sys.argv[1]</div><div class="line">faceCascade = cv2.CascadeClassifier(cascPath)</div><div class="line"></div><div class="line">video_capture= cv2.VideoCapture(0)</div><div class="line"></div><div class="line">while True:</div><div class="line">	# 逐帧抓取</div><div class="line">	ret, frame = video_capture.read()</div><div class="line">	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)</div><div class="line">	</div><div class="line">	faces = faceCascade.detectMultiScale(</div><div class="line">		gray,</div><div class="line">		scaleFactor=1.1,</div><div class="line">		minNeighbors=5,</div><div class="line">		minSize=(30, 30),</div><div class="line">		flags=cv2.cv.CV_HAAR_SCALE_IMAGE</div><div class="line">		)</div><div class="line">		</div><div class="line">	# 在脸部周围画矩形</div><div class="line">	for (x, y, w, h) in faces:</div><div class="line">	cv2.rectangle(frame, (x,y), (x+w, y+h), (0, 255, 0), 2)</div><div class="line">	</div><div class="line">	# 显示处理过的结果</div><div class="line">	cv2.imshow(&apos;Video&apos;, frame)</div><div class="line">	</div><div class="line">	if cv2.waitKey(1) &amp; 0xFF == ord(&apos;q&apos;):</div><div class="line">		break</div><div class="line">		</div><div class="line">	# 当所有结束，释放捕获动作</div><div class="line">	</div><div class="line">video_capture.release()</div><div class="line">cv2.destoryAllwindows()</div></pre></td></tr></table></figure></p>
 <p>现在，我们分解这些代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import cv2</div><div class="line">import sys</div><div class="line"></div><div class="line">cascPath = sys.argv[1]</div><div class="line">faceCascade = cv2.CascadeClassifier(cascPath)</div></pre></td></tr></table></figure></p>
 <p>你对这个应该很熟悉。我们正在创建一个face cascade（脸部级联），就像我们在图片的例子上做的一样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">video_capture = cv2.VideoCapture(0)</div></pre></td></tr></table></figure></p>
 <p>这一行将视频源设置为默认摄像头，OpenCV可以很简单地获取它。<br>    注意：你也可以给它一个文件名，Python会读视频文件。然而，由于OpenCV自身不能解码解压视频，你需要安装ffmpeg。ffmpeg作为OpenCV的前端，并且理想情况下，视频会被直接编码给OpenCV使用。这不容易做到，尤其是在Windows。</p>
@@ -400,6 +404,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/01/一些招聘笔试编程题/" rel="prev" title="一些招聘笔试编程题">
+                一些招聘笔试编程题 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -471,7 +479,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -510,7 +518,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用摄像头-python进行人脸检测"><span class="nav-number">1.</span> <span class="nav-text">使用摄像头+python进行人脸检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">3.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下一步"><span class="nav-number"></span> <span class="nav-text">下一步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#本地测试"><span class="nav-number">1.</span> <span class="nav-text">本地测试</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用摄像头-Python进行人脸检测"><span class="nav-number">1.</span> <span class="nav-text">使用摄像头+Python进行人脸检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">3.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下一步"><span class="nav-number"></span> <span class="nav-text">下一步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#本地测试"><span class="nav-number">1.</span> <span class="nav-text">本地测试</span></a></li></ol></div>
             
 
           </div>

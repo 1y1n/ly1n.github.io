@@ -245,6 +245,135 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/04/01/一些招聘笔试编程题/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="nina">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="nina's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="nina's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/01/一些招聘笔试编程题/" itemprop="url">
+                  一些招聘笔试编程题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-01T20:56:29+08:00">
+                2017-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一些招聘笔试编程题-更新"><a href="#一些招聘笔试编程题-更新" class="headerlink" title="一些招聘笔试编程题(更新)"></a>一些招聘笔试编程题(更新)</h1><p>ps:因为以前从来没写过算法或者解决数学问题等等等等的编程，也一直很恐惧。借着看招聘笔试编程题，特地记录一下。。。。<br>1、给一个文本文件text.txt，然后有多行信息，每行信息有姓名，电话（可重复），问重复最多的最后的行下标。<br>2、给定一个字符串s，你可以从中删除一些字符，使得剩下的串是一个回文串。如何删除才能使得回文串最长呢？</p>
+<h2 id="1、给一个文本文件text-txt，然后有多行信息，每行信息有姓名，电话（可重复），问重复最多的最后的行下标。"><a href="#1、给一个文本文件text-txt，然后有多行信息，每行信息有姓名，电话（可重复），问重复最多的最后的行下标。" class="headerlink" title="1、给一个文本文件text.txt，然后有多行信息，每行信息有姓名，电话（可重复），问重复最多的最后的行下标。"></a>1、给一个文本文件text.txt，然后有多行信息，每行信息有姓名，电话（可重复），问重复最多的最后的行下标。</h2><p>teat.txt   （自行修改）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">BILL 138000000</div><div class="line">TOM  138000001</div><div class="line">ABLE 138000000</div><div class="line">BILL 138000000</div><div class="line">TOM  138000003</div><div class="line">BILL 138000000</div><div class="line">TOM  138000003</div><div class="line">BILL 138000000</div><div class="line">TOM  138000003</div><div class="line">TOM  138000003</div><div class="line">TOM  138000003</div></pre></td></tr></table></figure></p>
+<p>test.py<br>版本一:只判断一个重复最多<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">from collections import Counter</div><div class="line"></div><div class="line">with open(&apos;C:/Users/60597/Desktop/test.txt&apos;,&apos;r&apos;) as f:</div><div class="line">    all = f.readlines()						##把每一行数据拿出来，是一个list</div><div class="line">    c = Counter(all)    </div><div class="line">    most =  c.most_common(1)					##是一个list+tuple。形如[(&apos;BILL 138000000\n&apos;, 5),(&apos;BILL 138000001\n&apos;, 4)]拿出重复最多的（Counter()默认排序好了，第一个就是最多的），</div><div class="line">    last_appeal = len(all)-all[::-1].index(most[0][0])		##总行数减去&apos;最多那个&apos;最后一次出现的下标</div><div class="line">								##（index只会得到第一次出现的下标，倒回来就是最后一次出现。有个rindex函数，不过这是操作str的）</div><div class="line">    print(&apos;appeal most:%slast appeal index:%d&apos; % (most[0][0],last_appeal))</div></pre></td></tr></table></figure></p>
+<p>版本二：可判断多个重复最多<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">from collections import Counter</div><div class="line"></div><div class="line">with open(&apos;C:/Users/60597/Desktop/test.txt&apos;,&apos;r&apos;) as f:</div><div class="line">    all = f.readlines()</div><div class="line">    c = Counter(all)</div><div class="line">    co = []</div><div class="line">    for i in range(len(c.most_common())):			##先看是否 有多个重复最多的</div><div class="line">        co.append(c.most_common()[i][1])</div><div class="line">        if c.most_common()[i][1]!=c.most_common()[i+1][1]:</div><div class="line">            break</div><div class="line">    if len(co)==1:						##只有一个重复最多</div><div class="line">        most =  c.most_common(1)</div><div class="line">        last_appeal = len(all)-all[::-1].index(most[0][0])</div><div class="line">        print(&apos;appeal most:%scount:%d\nlast appeal index:%d&apos; % (most[0][0],most[0][1],last_appeal))</div><div class="line">    else:							##有多个（可以和只有一个合并，不过这样看着舒服点。。。。）</div><div class="line">        most = c.most_common(len(co))				##得到共有几个，用for循环全部拿出</div><div class="line">        for i in range(len(co)):				##和上面类似，只不过位置信息变成变量i</div><div class="line">            last_appeal = len(all)-all[::-1].index(most[i][0])</div><div class="line">            print(&apos;有%d个重复最多,其中第%d个为:&apos;%(len(co),i+1))</div><div class="line">            print(&apos;appeal most:%scount:%d\nlast appeal index:%d&apos; % (most[i][0],most[i][1],last_appeal))</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="2、给定一个字符串s，你可以从中删除一些字符，使得剩下的串是一个回文串。如何删除才能使得回文串最长呢？"><a href="#2、给定一个字符串s，你可以从中删除一些字符，使得剩下的串是一个回文串。如何删除才能使得回文串最长呢？" class="headerlink" title="2、给定一个字符串s，你可以从中删除一些字符，使得剩下的串是一个回文串。如何删除才能使得回文串最长呢？"></a>2、给定一个字符串s，你可以从中删除一些字符，使得剩下的串是一个回文串。如何删除才能使得回文串最长呢？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">输入描述:</div><div class="line">输入数据有多组，每组包含一个字符串s，且保证:1&lt;=s.length&lt;=1000.</div><div class="line">输出描述:</div><div class="line">对于每组数据，输出一个整数，代表最少需要删除的字符个数。</div><div class="line">输入例子:</div><div class="line">abcda </div><div class="line">google</div><div class="line">输出例子:</div><div class="line">2 </div><div class="line">2</div></pre></td></tr></table></figure>
+<p>简单版：只限定于一部分情况，如’google’,’abcda’.<br>但 ‘abcdbhghbd’ 就不行了。原因是默认为第一个字符开始为回文，当其中的回文不是字符串第一个开始时，就会出错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">n = input(&apos;输入字符:&apos;)</div><div class="line">m = n[::-1]					##m是正常输入的字符串，n是倒字符串。</div><div class="line">temp = &apos;&apos;</div><div class="line">for i in n:</div><div class="line">    for j in m:</div><div class="line">        if i==j:</div><div class="line">            temp = temp+i			##当匹配到时，将匹配到的字符放入temp变量存储。</div><div class="line">            index = m.index(j)			##当匹配到一个符合，记录下匹配到的字符下标，然后将此位置及之前的字符删了，</div><div class="line">            m = m[index+1:]			##确保下一个字符开始匹配是从已经匹配完的字符后面开始，而不是又整串字符重新开始。</div><div class="line">            break				##该位置已经匹配完，跳出该位置（跳出for j 循环），进入下一个（i，j都进入下一个字符）。</div><div class="line">						##如果没有匹配到，是j进入下一个字符再重复上面的if语句。</div><div class="line">print(temp)</div></pre></td></tr></table></figure></p>
+<p>进阶版:总感觉怪怪的，= =！想了太久，脑子已经懵了。以后再看吧<br>输出的是每个字符试过去的结果，其中最长的就是要的结果。<br>最终结果可以用count()比大小拿出来，或者其他方法。而且我也没符合题意，题目是说最少需要删除的字符个数，懒得写了。。。。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">n = input(&apos;输入字符:&apos;)</div><div class="line">m = n[::-1]</div><div class="line">temp = &apos;&apos;</div><div class="line">res = []</div><div class="line">for k in n:			##需要多一层循环是因为，在i循环的时候，如果前面没有匹配到字符，一定会匹配到自身，</div><div class="line">    for i in n:			##这时候m已经被删光了，需要多一层循环把m以及n重置。感觉怪怪的就是在这里，因为总觉得我多一层循环好像更复杂了些。。。</div><div class="line">        for j in m:</div><div class="line">            if i==j:</div><div class="line">                temp = temp+i</div><div class="line">                index = m.index(j)</div><div class="line">                m = m[index+1:]</div><div class="line">                break</div><div class="line">    res.append(temp)			##将每次的结果放入res中，每次循环至少有一个自身会输出。</div><div class="line">    n = n[1:]				##在这里把原字符串第一位删了，这一位已经运行过了。</div><div class="line">    m = n[::-1]				##那一位数肯定不会再是回文其中之一了，所以m也要跟着变</div><div class="line">    temp=&apos;&apos;</div><div class="line">print(res)</div></pre></td></tr></table></figure></p>
+<hr>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/03/28/使用摄像头-python进行人脸检测/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -271,7 +400,7 @@
               
                 
                 <a class="post-title-link" href="/2017/03/28/使用摄像头-python进行人脸检测/" itemprop="url">
-                  使用摄像头+python进行人脸检测
+                  使用摄像头+Python进行人脸检测
                 </a>
               
             
@@ -325,7 +454,8 @@
       
         
           
-            <h2 id="使用摄像头-python进行人脸检测"><a href="#使用摄像头-python进行人脸检测" class="headerlink" title="使用摄像头+python进行人脸检测"></a>使用摄像头+python进行人脸检测</h2><p>翻译自：<br><a href="https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/" target="_blank" rel="external">https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/</a></p>
+            <h2 id="使用摄像头-Python进行人脸检测"><a href="#使用摄像头-Python进行人脸检测" class="headerlink" title="使用摄像头+Python进行人脸检测"></a>使用摄像头+Python进行人脸检测</h2><p>翻译自：<br><a href="https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/" target="_blank" rel="external">https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/</a></p>
+<p>译者：nina</p>
 <hr>
 <p>这篇博客文章是《25行python代码实现人脸识别》的后续，所以确保你已经阅读过了那篇文章。</p>
 <p>如前篇文章所述，我们可以很容易地把图像中检测人脸的技术通过摄像头应用到视频中–这就是这篇文章将会详细介绍的。</p>
@@ -335,7 +465,7 @@
     3.你需要一个正常工作的摄像头来正确地运行这些脚本.
     4.看看别人的评论或问题,可能你的问题已经解决.
 </code></pre><p>需要准备的：<br>    1、安装OpenCV（详细请看以前的文章）<br>    2、一个可以工作的摄像头</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>让我们直接解读代码，从这个<a href="https://github.com/shantnu/Webcam-Face-Detect" target="_blank" rel="external">仓库</a>获取。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">import cv2</div><div class="line">import sys</div><div class="line"></div><div class="line">cascPath = sys.argv[1]</div><div class="line">faceCascade = cv2.CascadeClassifier(cascPath)</div><div class="line"></div><div class="line">video_capture= cv2.VideoCapture(0)</div><div class="line"></div><div class="line">while True:</div><div class="line">	# 逐帧抓取</div><div class="line">	ret, frame = video_capture.read()</div><div class="line">	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)</div><div class="line">	</div><div class="line">	faces = faceCascade.detectMultiScale(</div><div class="line">		gray,</div><div class="line">		scaleFactor=1.1,</div><div class="line">		minNeighbors=5,</div><div class="line">		minSize=(30, 30),</div><div class="line">		flags=cv2.cv.CV_HAAR_SCALE_IMAGE</div><div class="line">		)</div><div class="line">		</div><div class="line">	# 在脸部周围画矩形</div><div class="line">	for (x, y, w, h) in faces:</div><div class="line">	cv2.rectangle(frame, (x,y), (x+w, y+h), (0, 255, 0), 2)</div><div class="line">	</div><div class="line">	# 显示处理过的结果</div><div class="line">	cv2.imshow(&apos;Video&apos;, frame)</div><div class="line">	</div><div class="line">	if cv2.waitKey(1) &amp; 0xFF == ord(&apos;q&apos;):</div><div class="line">		break</div><div class="line">		</div><div class="line">	# 当所有结束，释放捕获动作</div><div class="line">	</div><div class="line">video_capture.release()</div><div class="line">cv2.destoryAllwindows()</div></pre></td></tr></table></figure></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>让我们直接解读代码，从这个<a href="https://github.com/shantnu/Webcam-Face-Detect" target="_blank" rel="external">github仓库</a>获取。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">import cv2</div><div class="line">import sys</div><div class="line"></div><div class="line">cascPath = sys.argv[1]</div><div class="line">faceCascade = cv2.CascadeClassifier(cascPath)</div><div class="line"></div><div class="line">video_capture= cv2.VideoCapture(0)</div><div class="line"></div><div class="line">while True:</div><div class="line">	# 逐帧抓取</div><div class="line">	ret, frame = video_capture.read()</div><div class="line">	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)</div><div class="line">	</div><div class="line">	faces = faceCascade.detectMultiScale(</div><div class="line">		gray,</div><div class="line">		scaleFactor=1.1,</div><div class="line">		minNeighbors=5,</div><div class="line">		minSize=(30, 30),</div><div class="line">		flags=cv2.cv.CV_HAAR_SCALE_IMAGE</div><div class="line">		)</div><div class="line">		</div><div class="line">	# 在脸部周围画矩形</div><div class="line">	for (x, y, w, h) in faces:</div><div class="line">	cv2.rectangle(frame, (x,y), (x+w, y+h), (0, 255, 0), 2)</div><div class="line">	</div><div class="line">	# 显示处理过的结果</div><div class="line">	cv2.imshow(&apos;Video&apos;, frame)</div><div class="line">	</div><div class="line">	if cv2.waitKey(1) &amp; 0xFF == ord(&apos;q&apos;):</div><div class="line">		break</div><div class="line">		</div><div class="line">	# 当所有结束，释放捕获动作</div><div class="line">	</div><div class="line">video_capture.release()</div><div class="line">cv2.destoryAllwindows()</div></pre></td></tr></table></figure></p>
 <p>现在，我们分解这些代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import cv2</div><div class="line">import sys</div><div class="line"></div><div class="line">cascPath = sys.argv[1]</div><div class="line">faceCascade = cv2.CascadeClassifier(cascPath)</div></pre></td></tr></table></figure></p>
 <p>你对这个应该很熟悉。我们正在创建一个face cascade（脸部级联），就像我们在图片的例子上做的一样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">video_capture = cv2.VideoCapture(0)</div></pre></td></tr></table></figure></p>
 <p>这一行将视频源设置为默认摄像头，OpenCV可以很简单地获取它。<br>    注意：你也可以给它一个文件名，Python会读视频文件。然而，由于OpenCV自身不能解码解压视频，你需要安装ffmpeg。ffmpeg作为OpenCV的前端，并且理想情况下，视频会被直接编码给OpenCV使用。这不容易做到，尤其是在Windows。</p>
@@ -473,6 +603,7 @@
         
           
             <h1 id="25行python代码实现人脸识别"><a href="#25行python代码实现人脸识别" class="headerlink" title="25行python代码实现人脸识别"></a>25行python代码实现人脸识别</h1><p>翻译自:<br><a href="https://realpython.com/blog/python/face-recognition-with-python/" target="_blank" rel="external">https://realpython.com/blog/python/face-recognition-with-python/</a></p>
+<p>译者：nina</p>
 <hr>
 <p>在这篇文章我们将会看到一个神奇又简单的方式来开始使用Python和开源库OpenCV进行人脸识别</p>
 <pre><code>在你在评论区提任何问题前：
@@ -1372,7 +1503,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
