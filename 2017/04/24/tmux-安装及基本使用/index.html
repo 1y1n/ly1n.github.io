@@ -87,22 +87,22 @@
 
 
 
-<meta name="description" content="记mjpg-streamr的安装和使用以及黑屏问题环境：VMware  Ubuntu16.04   摄像头为USB外接摄像头，支持UVC经测试，笔记本自带摄像头也可以使用
-先安装必要的文件123456sudo apt-get install libsdl1.2-dev subversion libjpeg-dev libjpeg62-dev imagemagickgit clone https:/">
+<meta name="description" content="tmux 基本操作
+安装：1sudo apt-get install tmux
+12345678tmux new -s session_name//创建一个会话tmux attach-sessiontmux attach-session -t session//连接某个session在进入tmux模式后，ctrl+b d 关闭tmux会话模式ctrl+b s 选择会话窗口ctrl+b n 切换的下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记mjpg-streamr的安装和使用">
-<meta property="og:url" content="https://ly-nina.github.io/2017/03/13/记mjpg-streamr的安装和使用/index.html">
+<meta property="og:title" content="tmux 安装及基本使用">
+<meta property="og:url" content="https://ly-nina.github.io/2017/04/24/tmux-安装及基本使用/index.html">
 <meta property="og:site_name" content="nina's blog">
-<meta property="og:description" content="记mjpg-streamr的安装和使用以及黑屏问题环境：VMware  Ubuntu16.04   摄像头为USB外接摄像头，支持UVC经测试，笔记本自带摄像头也可以使用
-先安装必要的文件123456sudo apt-get install libsdl1.2-dev subversion libjpeg-dev libjpeg62-dev imagemagickgit clone https:/">
-<meta property="og:image" content="https://ly-nina.github.io/img/mjpg-streamer-1.png">
-<meta property="og:image" content="https://ly-nina.github.io/img/mjpg-streamer-2.png">
-<meta property="og:updated_time" content="2017-03-13T16:03:05.224Z">
+<meta property="og:description" content="tmux 基本操作
+安装：1sudo apt-get install tmux
+12345678tmux new -s session_name//创建一个会话tmux attach-sessiontmux attach-session -t session//连接某个session在进入tmux模式后，ctrl+b d 关闭tmux会话模式ctrl+b s 选择会话窗口ctrl+b n 切换的下">
+<meta property="og:updated_time" content="2017-04-24T08:16:37.935Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记mjpg-streamr的安装和使用">
-<meta name="twitter:description" content="记mjpg-streamr的安装和使用以及黑屏问题环境：VMware  Ubuntu16.04   摄像头为USB外接摄像头，支持UVC经测试，笔记本自带摄像头也可以使用
-先安装必要的文件123456sudo apt-get install libsdl1.2-dev subversion libjpeg-dev libjpeg62-dev imagemagickgit clone https:/">
-<meta name="twitter:image" content="https://ly-nina.github.io/img/mjpg-streamer-1.png">
+<meta name="twitter:title" content="tmux 安装及基本使用">
+<meta name="twitter:description" content="tmux 基本操作
+安装：1sudo apt-get install tmux
+12345678tmux new -s session_name//创建一个会话tmux attach-sessiontmux attach-session -t session//连接某个session在进入tmux模式后，ctrl+b d 关闭tmux会话模式ctrl+b s 选择会话窗口ctrl+b n 切换的下">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="https://ly-nina.github.io/2017/03/13/记mjpg-streamr的安装和使用/"/>
+  <link rel="canonical" href="https://ly-nina.github.io/2017/04/24/tmux-安装及基本使用/"/>
 
 
 
 
 
-  <title> 记mjpg-streamr的安装和使用 | nina's blog </title>
+  <title> tmux 安装及基本使用 | nina's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,7 +253,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/03/13/记mjpg-streamr的安装和使用/">
+  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/04/24/tmux-安装及基本使用/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="nina">
@@ -277,7 +277,7 @@
             
             
               
-                记mjpg-streamr的安装和使用
+                tmux 安装及基本使用
               
             
           </h1>
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-13T23:00:21+08:00">
-                2017-03-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-24T16:14:28+08:00">
+                2017-04-24
               </time>
             
 
@@ -328,13 +328,9 @@
       
 
       
-        <h2 id="记mjpg-streamr的安装和使用以及黑屏问题"><a href="#记mjpg-streamr的安装和使用以及黑屏问题" class="headerlink" title="记mjpg-streamr的安装和使用以及黑屏问题"></a>记mjpg-streamr的安装和使用以及黑屏问题</h2><p>环境：VMware  Ubuntu16.04   摄像头为USB外接摄像头，支持UVC<br>经测试，笔记本自带摄像头也可以使用</p>
-<p>先安装必要的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install libsdl1.2-dev subversion libjpeg-dev libjpeg62-dev imagemagick</div><div class="line">git clone https://github.com/shrkey/mjpg-streamer  //如果没有安装git，要先 sudo apt install git</div><div class="line">cd mjpg-streamer/mjpg-streamer</div><div class="line">make clean</div><div class="line">make </div><div class="line">sudo make install</div></pre></td></tr></table></figure></p>
-<p>编译完成后，测试是否能使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export LD_LIBRARY_PATH=.</div><div class="line">./mjpg_streamer -i &quot;input_uvc.so -d /dev/video0 -y -r 960x720&quot; -o &quot;output_http.so -w ./www&quot;</div></pre></td></tr></table></figure></p>
-<p>浏览器打开调试页面<br>127.0.0.1:8080</p>
-<h2 id="碰到的问题"><a href="#碰到的问题" class="headerlink" title="碰到的问题"></a>碰到的问题</h2><h3 id="浏览器打开后不能正常显示图像。"><a href="#浏览器打开后不能正常显示图像。" class="headerlink" title="浏览器打开后不能正常显示图像。"></a>浏览器打开后不能正常显示图像。</h3><p>修改分辨率为最低160x120  也还是不行。<br>后面运行cheese，打开后也黑屏<br>下载了个camorama，打开直接无响应。<br>去网上找cheese 黑屏，找到一个<a href="http://blog.csdn.net/alger_magic/article/details/53383181" target="_blank" rel="external">博客</a><br>在VMware虚拟机设置上，把usb兼容性由原来2.0改为3.0<br>重新加载摄像头，再打开cheese，图像出现。<br>打开mjpg，已经可以正常显示图片。</p>
-<p><img src="/img/mjpg-streamer-1.png" alt="虚拟机设置"><br><img src="/img/mjpg-streamer-2.png" alt="正常显示"></p>
-<p>参考链接：<br><a href="http://blog.chinaunix.net/uid-25885064-id-3463014.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-25885064-id-3463014.html</a><br><a href="http://bbs.elecfans.com/jishu_510084_1_1.html" target="_blank" rel="external">http://bbs.elecfans.com/jishu_510084_1_1.html</a><br><a href="http://blog.csdn.net/alger_magic/article/details/53383181" target="_blank" rel="external">http://blog.csdn.net/alger_magic/article/details/53383181</a></p>
+        <p>tmux 基本操作</p>
+<p>安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install tmux</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tmux new -s session_name//创建一个会话</div><div class="line">tmux attach-session</div><div class="line">tmux attach-session -t session//连接某个session</div><div class="line"></div><div class="line">在进入tmux模式后，</div><div class="line">ctrl+b d 关闭tmux会话模式</div><div class="line">ctrl+b s 选择会话窗口</div><div class="line">ctrl+b n 切换的下一个会话</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -365,8 +361,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/10/Ubuntu16-04-安装MQTT/" rel="next" title="Ubuntu16.04 安装MQTT">
-                <i class="fa fa-chevron-left"></i> Ubuntu16.04 安装MQTT
+              <a href="/2017/04/11/python-ev3-一些基本命令记录/" rel="next" title="python + ev3 一些基本命令记录">
+                <i class="fa fa-chevron-left"></i> python + ev3 一些基本命令记录
               </a>
             
           </div>
@@ -375,8 +371,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/19/opencv安装过程及错误解决办法/" rel="prev" title="opencv安装过程及错误解决办法">
-                opencv安装过程及错误解决办法 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/24/python2-python3-二维码识别/" rel="prev" title="python2 python3 zbarlight 二维码识别">
+                python2 python3 zbarlight 二维码识别 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -424,17 +420,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -478,22 +465,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#记mjpg-streamr的安装和使用以及黑屏问题"><span class="nav-number">1.</span> <span class="nav-text">记mjpg-streamr的安装和使用以及黑屏问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#碰到的问题"><span class="nav-number">2.</span> <span class="nav-text">碰到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器打开后不能正常显示图像。"><span class="nav-number">2.1.</span> <span class="nav-text">浏览器打开后不能正常显示图像。</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>

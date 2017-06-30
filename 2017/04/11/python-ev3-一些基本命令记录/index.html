@@ -87,22 +87,16 @@
 
 
 
-<meta name="description" content="记mjpg-streamr的安装和使用以及黑屏问题环境：VMware  Ubuntu16.04   摄像头为USB外接摄像头，支持UVC经测试，笔记本自带摄像头也可以使用
-先安装必要的文件123456sudo apt-get install libsdl1.2-dev subversion libjpeg-dev libjpeg62-dev imagemagickgit clone https:/">
+<meta name="description" content="python + ev3 基本控制1234567891011121314151617181920212223242526272829303132333435ev3dev.ev3ev3dev.coreUltrasonic Sensor超声波传感器Us = Ultrasonic Sensor()Us.value()//输出测量值TouchSensor触碰传感器s = ev3.TouchSensor()">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记mjpg-streamr的安装和使用">
-<meta property="og:url" content="https://ly-nina.github.io/2017/03/13/记mjpg-streamr的安装和使用/index.html">
+<meta property="og:title" content="python + ev3 一些基本命令记录">
+<meta property="og:url" content="https://ly-nina.github.io/2017/04/11/python-ev3-一些基本命令记录/index.html">
 <meta property="og:site_name" content="nina's blog">
-<meta property="og:description" content="记mjpg-streamr的安装和使用以及黑屏问题环境：VMware  Ubuntu16.04   摄像头为USB外接摄像头，支持UVC经测试，笔记本自带摄像头也可以使用
-先安装必要的文件123456sudo apt-get install libsdl1.2-dev subversion libjpeg-dev libjpeg62-dev imagemagickgit clone https:/">
-<meta property="og:image" content="https://ly-nina.github.io/img/mjpg-streamer-1.png">
-<meta property="og:image" content="https://ly-nina.github.io/img/mjpg-streamer-2.png">
-<meta property="og:updated_time" content="2017-03-13T16:03:05.224Z">
+<meta property="og:description" content="python + ev3 基本控制1234567891011121314151617181920212223242526272829303132333435ev3dev.ev3ev3dev.coreUltrasonic Sensor超声波传感器Us = Ultrasonic Sensor()Us.value()//输出测量值TouchSensor触碰传感器s = ev3.TouchSensor()">
+<meta property="og:updated_time" content="2017-04-24T08:11:00.158Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记mjpg-streamr的安装和使用">
-<meta name="twitter:description" content="记mjpg-streamr的安装和使用以及黑屏问题环境：VMware  Ubuntu16.04   摄像头为USB外接摄像头，支持UVC经测试，笔记本自带摄像头也可以使用
-先安装必要的文件123456sudo apt-get install libsdl1.2-dev subversion libjpeg-dev libjpeg62-dev imagemagickgit clone https:/">
-<meta name="twitter:image" content="https://ly-nina.github.io/img/mjpg-streamer-1.png">
+<meta name="twitter:title" content="python + ev3 一些基本命令记录">
+<meta name="twitter:description" content="python + ev3 基本控制1234567891011121314151617181920212223242526272829303132333435ev3dev.ev3ev3dev.coreUltrasonic Sensor超声波传感器Us = Ultrasonic Sensor()Us.value()//输出测量值TouchSensor触碰传感器s = ev3.TouchSensor()">
 
 
 
@@ -130,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://ly-nina.github.io/2017/03/13/记mjpg-streamr的安装和使用/"/>
+  <link rel="canonical" href="https://ly-nina.github.io/2017/04/11/python-ev3-一些基本命令记录/"/>
 
 
 
 
 
-  <title> 记mjpg-streamr的安装和使用 | nina's blog </title>
+  <title> python + ev3 一些基本命令记录 | nina's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,7 +247,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/03/13/记mjpg-streamr的安装和使用/">
+  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/04/11/python-ev3-一些基本命令记录/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="nina">
@@ -277,7 +271,7 @@
             
             
               
-                记mjpg-streamr的安装和使用
+                python + ev3 一些基本命令记录
               
             
           </h1>
@@ -292,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-13T23:00:21+08:00">
-                2017-03-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-11T16:44:17+08:00">
+                2017-04-11
               </time>
             
 
@@ -328,13 +322,10 @@
       
 
       
-        <h2 id="记mjpg-streamr的安装和使用以及黑屏问题"><a href="#记mjpg-streamr的安装和使用以及黑屏问题" class="headerlink" title="记mjpg-streamr的安装和使用以及黑屏问题"></a>记mjpg-streamr的安装和使用以及黑屏问题</h2><p>环境：VMware  Ubuntu16.04   摄像头为USB外接摄像头，支持UVC<br>经测试，笔记本自带摄像头也可以使用</p>
-<p>先安装必要的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install libsdl1.2-dev subversion libjpeg-dev libjpeg62-dev imagemagick</div><div class="line">git clone https://github.com/shrkey/mjpg-streamer  //如果没有安装git，要先 sudo apt install git</div><div class="line">cd mjpg-streamer/mjpg-streamer</div><div class="line">make clean</div><div class="line">make </div><div class="line">sudo make install</div></pre></td></tr></table></figure></p>
-<p>编译完成后，测试是否能使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export LD_LIBRARY_PATH=.</div><div class="line">./mjpg_streamer -i &quot;input_uvc.so -d /dev/video0 -y -r 960x720&quot; -o &quot;output_http.so -w ./www&quot;</div></pre></td></tr></table></figure></p>
-<p>浏览器打开调试页面<br>127.0.0.1:8080</p>
-<h2 id="碰到的问题"><a href="#碰到的问题" class="headerlink" title="碰到的问题"></a>碰到的问题</h2><h3 id="浏览器打开后不能正常显示图像。"><a href="#浏览器打开后不能正常显示图像。" class="headerlink" title="浏览器打开后不能正常显示图像。"></a>浏览器打开后不能正常显示图像。</h3><p>修改分辨率为最低160x120  也还是不行。<br>后面运行cheese，打开后也黑屏<br>下载了个camorama，打开直接无响应。<br>去网上找cheese 黑屏，找到一个<a href="http://blog.csdn.net/alger_magic/article/details/53383181" target="_blank" rel="external">博客</a><br>在VMware虚拟机设置上，把usb兼容性由原来2.0改为3.0<br>重新加载摄像头，再打开cheese，图像出现。<br>打开mjpg，已经可以正常显示图片。</p>
-<p><img src="/img/mjpg-streamer-1.png" alt="虚拟机设置"><br><img src="/img/mjpg-streamer-2.png" alt="正常显示"></p>
-<p>参考链接：<br><a href="http://blog.chinaunix.net/uid-25885064-id-3463014.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-25885064-id-3463014.html</a><br><a href="http://bbs.elecfans.com/jishu_510084_1_1.html" target="_blank" rel="external">http://bbs.elecfans.com/jishu_510084_1_1.html</a><br><a href="http://blog.csdn.net/alger_magic/article/details/53383181" target="_blank" rel="external">http://blog.csdn.net/alger_magic/article/details/53383181</a></p>
+        <h2 id="python-ev3-基本控制"><a href="#python-ev3-基本控制" class="headerlink" title="python + ev3 基本控制"></a>python + ev3 基本控制</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">ev3dev.ev3</div><div class="line">ev3dev.core</div><div class="line"></div><div class="line">Ultrasonic Sensor</div><div class="line">超声波传感器</div><div class="line"></div><div class="line">Us = Ultrasonic Sensor()</div><div class="line">Us.value()</div><div class="line">//输出测量值</div><div class="line"></div><div class="line"></div><div class="line">TouchSensor</div><div class="line">触碰传感器</div><div class="line">s = ev3.TouchSensor()</div><div class="line">while True:</div><div class="line">    ev3.Leds.set_color(ev3.Leds.LEFT, (ev3.Leds.GREEN, ev3.Leds.RED)[ts.value()])</div><div class="line">//按下按键后，ev3按键上的灯光由绿变红</div><div class="line"></div><div class="line"></div><div class="line">Gyro Sensor</div><div class="line">陀螺仪</div><div class="line">Gy = ev3.GyroSensor()</div><div class="line">while True:</div><div class="line">	print(ev3.value())</div><div class="line"></div><div class="line"></div><div class="line">电机</div><div class="line">Running a motor</div><div class="line">m = ev3.LargeMotor(&apos;outA&apos;)</div><div class="line">m.run_timed(time_sp=3000, speed_sp=500)</div><div class="line"></div><div class="line"></div><div class="line">Sound</div><div class="line">输出声音</div><div class="line">ev3.Sound.speak(&apos;Welcome to the E V 3 dev project!&apos;).wait()</div></pre></td></tr></table></figure>
+<p>================================================================<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"> Motor</div><div class="line">speed_sp    -900~+900</div><div class="line"></div><div class="line"> 给定角度	//电机转动角度</div><div class="line">run_to_rel_pos(position_sp=&lt;angle in degrees&gt;, speed_sp=&lt;value&gt;)//如果要倒退，在position_sp设置负数，这个函数，speed_sp不允许为负数</div><div class="line">m = LargeMotor(&apos;outB&apos;)</div><div class="line">m.run_to_rel_pos(position_sp=360, speed_sp=900, stop_action=&quot;hold&quot;)</div><div class="line"></div><div class="line"> 指定时间</div><div class="line">run_timed(time_sp=&lt;time in milliseconds&gt;, speed_sp=&lt;value&gt;)</div><div class="line">m = LargeMotor(&apos;outB&apos;)</div><div class="line">m.run_timed(time_sp=3000, speed_sp=-750)</div><div class="line">print(&quot;set speed (speed_sp) = &quot; + str(m.speed_sp))</div><div class="line">sleep(1)  # it takes a moment for the motor to start moving</div><div class="line">print(&quot;actual speed = &quot; + str(m.speed))</div><div class="line">sleep(4)				//sleep4+1  是因为要让电机有足够的时间启动。否则这个程序运行就直接结束，电机来不及反应。</div><div class="line"></div><div class="line"> 一直走</div><div class="line">run_forever(speed_sp=&lt;value&gt;)</div><div class="line">use stop() or stop(stop_action=&lt;value&gt;) value can be &apos;coast&apos;, &apos;break&apos;, &apos;hold&apos;</div></pre></td></tr></table></figure></p>
+<p>m.run_forever(speed_sp=200)   # equivalent to power=20 in EV3-G<br>sleep(5)<br>m.stop(stop_action=”coast”)<br>sleep(4)</p>
+<p>m.run_forever()<br>sleep(5)<br>m.stop()<br>sleep(4)<br><figure class="highlight plain"><figcaption><span>run_forever()  and  stop()</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"> 等待命令执行完成</div><div class="line">motor = LargeMotor(&apos;outC&apos;)</div><div class="line">motor.run_timed(time_sp=3000, speed_sp=-750, stop_action=&apos;brake&apos;)</div><div class="line">motor.wait_while(&apos;running&apos;)//会等待running动作运行完成才停止（才开始执行下面的代码）</div><div class="line"></div><div class="line">Sound.beep()//发出哔哔声</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -365,8 +356,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/10/Ubuntu16-04-安装MQTT/" rel="next" title="Ubuntu16.04 安装MQTT">
-                <i class="fa fa-chevron-left"></i> Ubuntu16.04 安装MQTT
+              <a href="/2017/03/28/使用摄像头-python进行人脸检测/" rel="next" title="使用摄像头+Python进行人脸检测">
+                <i class="fa fa-chevron-left"></i> 使用摄像头+Python进行人脸检测
               </a>
             
           </div>
@@ -375,8 +366,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/19/opencv安装过程及错误解决办法/" rel="prev" title="opencv安装过程及错误解决办法">
-                opencv安装过程及错误解决办法 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/24/tmux-安装及基本使用/" rel="prev" title="tmux 安装及基本使用">
+                tmux 安装及基本使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -488,7 +479,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#记mjpg-streamr的安装和使用以及黑屏问题"><span class="nav-number">1.</span> <span class="nav-text">记mjpg-streamr的安装和使用以及黑屏问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#碰到的问题"><span class="nav-number">2.</span> <span class="nav-text">碰到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器打开后不能正常显示图像。"><span class="nav-number">2.1.</span> <span class="nav-text">浏览器打开后不能正常显示图像。</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python-ev3-基本控制"><span class="nav-number">1.</span> <span class="nav-text">python + ev3 基本控制</span></a></li></ol></div>
             
 
           </div>
