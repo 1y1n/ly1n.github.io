@@ -87,22 +87,19 @@
 
 
 
-<meta name="description" content="tmux 基本操作
-安装：1sudo apt-get install tmux
-12345678tmux new -s session_name//创建一个会话tmux attach-sessiontmux attach-session -t session//连接某个session在进入tmux模式后，ctrl+b d 关闭tmux会话模式ctrl+b s 选择会话窗口ctrl+b n 切换的下">
+<meta name="description" content="squid 简单安装及高匿配置tag: Ubuntu 14.04
+123456789101112131415161718192021222324# sudo apt-get update# sudo apt-get install squid# sudo vim /etc/squid3 squid.conf搜索http_port 把默认端口改了（默认是3128）搜索manager原文是http_a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tmux 安装及基本使用">
-<meta property="og:url" content="https://ly-nina.github.io/2017/04/24/tmux-安装及基本使用/index.html">
+<meta property="og:title" content="squid 简单安装及高匿配置">
+<meta property="og:url" content="https://ly-nina.github.io/2017/11/16/squid-简单安装及高匿配置/index.html">
 <meta property="og:site_name" content="nina's blog">
-<meta property="og:description" content="tmux 基本操作
-安装：1sudo apt-get install tmux
-12345678tmux new -s session_name//创建一个会话tmux attach-sessiontmux attach-session -t session//连接某个session在进入tmux模式后，ctrl+b d 关闭tmux会话模式ctrl+b s 选择会话窗口ctrl+b n 切换的下">
-<meta property="og:updated_time" content="2017-04-24T08:16:37.935Z">
+<meta property="og:description" content="squid 简单安装及高匿配置tag: Ubuntu 14.04
+123456789101112131415161718192021222324# sudo apt-get update# sudo apt-get install squid# sudo vim /etc/squid3 squid.conf搜索http_port 把默认端口改了（默认是3128）搜索manager原文是http_a">
+<meta property="og:updated_time" content="2017-11-16T02:10:18.612Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tmux 安装及基本使用">
-<meta name="twitter:description" content="tmux 基本操作
-安装：1sudo apt-get install tmux
-12345678tmux new -s session_name//创建一个会话tmux attach-sessiontmux attach-session -t session//连接某个session在进入tmux模式后，ctrl+b d 关闭tmux会话模式ctrl+b s 选择会话窗口ctrl+b n 切换的下">
+<meta name="twitter:title" content="squid 简单安装及高匿配置">
+<meta name="twitter:description" content="squid 简单安装及高匿配置tag: Ubuntu 14.04
+123456789101112131415161718192021222324# sudo apt-get update# sudo apt-get install squid# sudo vim /etc/squid3 squid.conf搜索http_port 把默认端口改了（默认是3128）搜索manager原文是http_a">
 
 
 
@@ -130,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://ly-nina.github.io/2017/04/24/tmux-安装及基本使用/"/>
+  <link rel="canonical" href="https://ly-nina.github.io/2017/11/16/squid-简单安装及高匿配置/"/>
 
 
 
 
 
-  <title> tmux 安装及基本使用 | nina's blog </title>
+  <title> squid 简单安装及高匿配置 | nina's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,7 +250,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/04/24/tmux-安装及基本使用/">
+  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/11/16/squid-简单安装及高匿配置/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="nina">
@@ -277,7 +274,7 @@
             
             
               
-                tmux 安装及基本使用
+                squid 简单安装及高匿配置
               
             
           </h1>
@@ -292,8 +289,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-24T16:14:28+08:00">
-                2017-04-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T09:43:55+08:00">
+                2017-11-16
               </time>
             
 
@@ -328,9 +325,10 @@
       
 
       
-        <p>tmux 基本操作</p>
-<p>安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install tmux</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tmux new -s session_name//创建一个会话</div><div class="line">tmux attach-session</div><div class="line">tmux attach-session -t session//连接某个session</div><div class="line"></div><div class="line">在进入tmux模式后，</div><div class="line">ctrl+b d 关闭tmux会话模式</div><div class="line">ctrl+b s 选择会话窗口</div><div class="line">ctrl+b n 切换的下一个会话</div></pre></td></tr></table></figure>
+        <h2 id="squid-简单安装及高匿配置"><a href="#squid-简单安装及高匿配置" class="headerlink" title="squid 简单安装及高匿配置"></a>squid 简单安装及高匿配置</h2><p>tag: Ubuntu 14.04</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"># sudo apt-get update</div><div class="line"># sudo apt-get install squid</div><div class="line"># sudo vim /etc/squid3 squid.conf</div><div class="line"></div><div class="line">搜索http_port 把默认端口改了（默认是3128）</div><div class="line">搜索manager</div><div class="line">原文是</div><div class="line">http_access allow  localhost manager</div><div class="line">http_access deny manager</div><div class="line"></div><div class="line">修改成</div><div class="line">acl manager1 src xxx.xxx.xxx.xxx</div><div class="line">http_access allow  manager1</div><div class="line">http_access deny manager</div><div class="line">-1，2行的manager1 可自定义名字 </div><div class="line">-src 后面是ip</div><div class="line"></div><div class="line">//在文件最后加上高匿配置</div><div class="line">request_header_access X-Forwarded-For deny all  </div><div class="line">request_header_access From deny all  </div><div class="line">request_header_access Via deny all  </div><div class="line"></div><div class="line">然后保存</div><div class="line">sudo service squid3 restart</div></pre></td></tr></table></figure>
+<p>测试：<br>浏览器打开  <a href="http://httpbin.org/get" target="_blank" rel="external">http://httpbin.org/get</a>  看自己ip<br>浏览器配置代理，再次访问，看ip是否变成自己服务器ip</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//查看版本号</div><div class="line">cat /etc/issue</div><div class="line">在好几个linux版本测试过，ubuntu14.04 LTS 是没有问题的，在ubuntu16.04版本开启服务后，测试不成功，暂时不知道是什么问题。后面有需要再解决。</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -361,8 +359,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/11/python-ev3-一些基本命令记录/" rel="next" title="python + ev3 一些基本命令记录">
-                <i class="fa fa-chevron-left"></i> python + ev3 一些基本命令记录
+              <a href="/2017/10/17/关于requests-session和post/" rel="next" title="关于requests session和post">
+                <i class="fa fa-chevron-left"></i> 关于requests session和post
               </a>
             
           </div>
@@ -370,10 +368,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/24/python2-python3-二维码识别/" rel="prev" title="python2 python3 zbarlight 二维码识别">
-                python2 python3 zbarlight 二维码识别 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -420,8 +414,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -465,6 +468,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#squid-简单安装及高匿配置"><span class="nav-number">1.</span> <span class="nav-text">squid 简单安装及高匿配置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>

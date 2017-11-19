@@ -87,22 +87,18 @@
 
 
 
-<meta name="description" content="tmux 基本操作
-安装：1sudo apt-get install tmux
-12345678tmux new -s session_name//创建一个会话tmux attach-sessiontmux attach-session -t session//连接某个session在进入tmux模式后，ctrl+b d 关闭tmux会话模式ctrl+b s 选择会话窗口ctrl+b n 切换的下">
+<meta name="description" content="1234567891011121314151617181920212223242526&amp;gt;&amp;gt;&amp;gt; import requests&amp;gt;&amp;gt;&amp;gt; import json&amp;gt;&amp;gt;&amp;gt; from bs4 import BeautifulSoup&amp;gt;&amp;gt;&amp;gt; headers = &amp;#123;&amp;apos;Accept&amp;apos;:&amp;apos;text/html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tmux 安装及基本使用">
-<meta property="og:url" content="https://ly-nina.github.io/2017/04/24/tmux-安装及基本使用/index.html">
+<meta property="og:title" content="关于requests session和post">
+<meta property="og:url" content="https://ly-nina.github.io/2017/10/17/关于requests-session和post/index.html">
 <meta property="og:site_name" content="nina's blog">
-<meta property="og:description" content="tmux 基本操作
-安装：1sudo apt-get install tmux
-12345678tmux new -s session_name//创建一个会话tmux attach-sessiontmux attach-session -t session//连接某个session在进入tmux模式后，ctrl+b d 关闭tmux会话模式ctrl+b s 选择会话窗口ctrl+b n 切换的下">
-<meta property="og:updated_time" content="2017-04-24T08:16:37.935Z">
+<meta property="og:description" content="1234567891011121314151617181920212223242526&amp;gt;&amp;gt;&amp;gt; import requests&amp;gt;&amp;gt;&amp;gt; import json&amp;gt;&amp;gt;&amp;gt; from bs4 import BeautifulSoup&amp;gt;&amp;gt;&amp;gt; headers = &amp;#123;&amp;apos;Accept&amp;apos;:&amp;apos;text/html">
+<meta property="og:image" content="https://ly-nina.github.io/img/requests-post.png">
+<meta property="og:updated_time" content="2017-10-17T09:47:03.532Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tmux 安装及基本使用">
-<meta name="twitter:description" content="tmux 基本操作
-安装：1sudo apt-get install tmux
-12345678tmux new -s session_name//创建一个会话tmux attach-sessiontmux attach-session -t session//连接某个session在进入tmux模式后，ctrl+b d 关闭tmux会话模式ctrl+b s 选择会话窗口ctrl+b n 切换的下">
+<meta name="twitter:title" content="关于requests session和post">
+<meta name="twitter:description" content="1234567891011121314151617181920212223242526&amp;gt;&amp;gt;&amp;gt; import requests&amp;gt;&amp;gt;&amp;gt; import json&amp;gt;&amp;gt;&amp;gt; from bs4 import BeautifulSoup&amp;gt;&amp;gt;&amp;gt; headers = &amp;#123;&amp;apos;Accept&amp;apos;:&amp;apos;text/html">
+<meta name="twitter:image" content="https://ly-nina.github.io/img/requests-post.png">
 
 
 
@@ -130,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://ly-nina.github.io/2017/04/24/tmux-安装及基本使用/"/>
+  <link rel="canonical" href="https://ly-nina.github.io/2017/10/17/关于requests-session和post/"/>
 
 
 
 
 
-  <title> tmux 安装及基本使用 | nina's blog </title>
+  <title> 关于requests session和post | nina's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,7 +249,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/04/24/tmux-安装及基本使用/">
+  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/10/17/关于requests-session和post/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="nina">
@@ -277,7 +273,7 @@
             
             
               
-                tmux 安装及基本使用
+                关于requests session和post
               
             
           </h1>
@@ -292,8 +288,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-24T16:14:28+08:00">
-                2017-04-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-17T17:26:34+08:00">
+                2017-10-17
               </time>
             
 
@@ -328,9 +324,10 @@
       
 
       
-        <p>tmux 基本操作</p>
-<p>安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install tmux</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tmux new -s session_name//创建一个会话</div><div class="line">tmux attach-session</div><div class="line">tmux attach-session -t session//连接某个session</div><div class="line"></div><div class="line">在进入tmux模式后，</div><div class="line">ctrl+b d 关闭tmux会话模式</div><div class="line">ctrl+b s 选择会话窗口</div><div class="line">ctrl+b n 切换的下一个会话</div></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; import requests</div><div class="line">&gt;&gt;&gt; import json</div><div class="line">&gt;&gt;&gt; from bs4 import BeautifulSoup</div><div class="line"></div><div class="line">&gt;&gt;&gt; headers = &#123;&apos;Accept&apos;:&apos;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&apos;,</div><div class="line">&apos;Accept-Encoding&apos;:&apos;gzip, deflate, sdch&apos;,</div><div class="line">&apos;Accept-Language&apos;:&apos;zh-CN,zh;q=0.8&apos;,</div><div class="line">&apos;Cache-Control&apos;:&apos;max-age=0&apos;,</div><div class="line">&apos;Connection&apos;:&apos;keep-alive&apos;,</div><div class="line">&apos;Cookie&apos;:&apos;_xsrf=2|3275a687|0633014ca4533e578b59af222f5e66ec|1505720289&apos;,</div><div class="line">&apos;If-None-Match&apos;:&quot;18acdf8a9f0e2d237e42d54e1d964b16f8c1d486&quot;,</div><div class="line">&apos;Upgrade-Insecure-Requests&apos;:&apos;1&apos;,</div><div class="line">&apos;User-Agent&apos;:&apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.104 Safari/537.36 Core/1.53.3408.400 QQBrowser/9.6.12028.400&apos;&#125;</div><div class="line"># 这边的headers 我是直接复制浏览器上的 Request Headers（F12--里面的network）。用burpsuite也可以看到 Headers</div><div class="line">&gt;&gt;&gt; sess = requests.Session()</div><div class="line">&gt;&gt;&gt; html = sess.get(&apos;http://www.lyincloud.com:8000&apos;, headers=headers)</div><div class="line">&gt;&gt;&gt; x = BeautifulSoup(html.content,&quot;lxml&quot;)</div><div class="line">&gt;&gt;&gt; _xsrf = x.find(&apos;input&apos;, attrs=&#123;&apos;name&apos;: &apos;_xsrf&apos;&#125;)[&apos;value&apos;]</div><div class="line">&gt;&gt;&gt; data = &#123;&apos;username&apos;:&apos;xxx&apos;, &apos;password&apos;:&apos;xxx&apos;, &apos;_xsrf&apos;: _xsrf&#125;</div><div class="line">&gt;&gt;&gt; res = sess.post(&apos;http://www.xxx.com/login&apos;, data=data, headers=headers)</div><div class="line">&gt;&gt;&gt; print(res)</div><div class="line">&lt;Response [200]&gt;</div><div class="line"># 没有加上 _xsrf 参数时，res都是403</div><div class="line">&gt;&gt;&gt; qqq = BeautifulSoup(res.content, &quot;lxml&quot;)</div><div class="line">&gt;&gt;&gt; print(qqq)</div><div class="line"># 这时候就可以看到经过BeautifulSoup处理过的html数据</div></pre></td></tr></table></figure>
+<p>没加 _xsrf 参数，会出现403，是因为程序本身做了安全防范，tornado里有个 xsrf 参数，<br>要通过post登录，需要包含这个参数。其实，直接用burp抓包可以发现需要提交的参数</p>
+<p><img src="/img/requests-post.png" alt="发送的数据包"></p>
+<p>关于session的进一部操作，以后再说</p>
 
       
     </div>
@@ -361,8 +358,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/11/python-ev3-一些基本命令记录/" rel="next" title="python + ev3 一些基本命令记录">
-                <i class="fa fa-chevron-left"></i> python + ev3 一些基本命令记录
+              <a href="/2017/06/30/渗透测试工具实战技巧合集/" rel="next" title="渗透测试工具实战技巧合集">
+                <i class="fa fa-chevron-left"></i> 渗透测试工具实战技巧合集
               </a>
             
           </div>
@@ -371,8 +368,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/24/python2-python3-二维码识别/" rel="prev" title="python2 python3 zbarlight 二维码识别">
-                python2 python3 zbarlight 二维码识别 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/16/squid-简单安装及高匿配置/" rel="prev" title="squid 简单安装及高匿配置">
+                squid 简单安装及高匿配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

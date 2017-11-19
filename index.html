@@ -245,6 +245,254 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/11/16/squid-简单安装及高匿配置/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="nina">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="nina's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="nina's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/16/squid-简单安装及高匿配置/" itemprop="url">
+                  squid 简单安装及高匿配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T09:43:55+08:00">
+                2017-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="squid-简单安装及高匿配置"><a href="#squid-简单安装及高匿配置" class="headerlink" title="squid 简单安装及高匿配置"></a>squid 简单安装及高匿配置</h2><p>tag: Ubuntu 14.04</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"># sudo apt-get update</div><div class="line"># sudo apt-get install squid</div><div class="line"># sudo vim /etc/squid3 squid.conf</div><div class="line"></div><div class="line">搜索http_port 把默认端口改了（默认是3128）</div><div class="line">搜索manager</div><div class="line">原文是</div><div class="line">http_access allow  localhost manager</div><div class="line">http_access deny manager</div><div class="line"></div><div class="line">修改成</div><div class="line">acl manager1 src xxx.xxx.xxx.xxx</div><div class="line">http_access allow  manager1</div><div class="line">http_access deny manager</div><div class="line">-1，2行的manager1 可自定义名字 </div><div class="line">-src 后面是ip</div><div class="line"></div><div class="line">//在文件最后加上高匿配置</div><div class="line">request_header_access X-Forwarded-For deny all  </div><div class="line">request_header_access From deny all  </div><div class="line">request_header_access Via deny all  </div><div class="line"></div><div class="line">然后保存</div><div class="line">sudo service squid3 restart</div></pre></td></tr></table></figure>
+<p>测试：<br>浏览器打开  <a href="http://httpbin.org/get" target="_blank" rel="external">http://httpbin.org/get</a>  看自己ip<br>浏览器配置代理，再次访问，看ip是否变成自己服务器ip</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//查看版本号</div><div class="line">cat /etc/issue</div><div class="line">在好几个linux版本测试过，ubuntu14.04 LTS 是没有问题的，在ubuntu16.04版本开启服务后，测试不成功，暂时不知道是什么问题。后面有需要再解决。</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/10/17/关于requests-session和post/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="nina">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="nina's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="nina's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/17/关于requests-session和post/" itemprop="url">
+                  关于requests session和post
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-17T17:26:34+08:00">
+                2017-10-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; import requests</div><div class="line">&gt;&gt;&gt; import json</div><div class="line">&gt;&gt;&gt; from bs4 import BeautifulSoup</div><div class="line"></div><div class="line">&gt;&gt;&gt; headers = &#123;&apos;Accept&apos;:&apos;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&apos;,</div><div class="line">&apos;Accept-Encoding&apos;:&apos;gzip, deflate, sdch&apos;,</div><div class="line">&apos;Accept-Language&apos;:&apos;zh-CN,zh;q=0.8&apos;,</div><div class="line">&apos;Cache-Control&apos;:&apos;max-age=0&apos;,</div><div class="line">&apos;Connection&apos;:&apos;keep-alive&apos;,</div><div class="line">&apos;Cookie&apos;:&apos;_xsrf=2|3275a687|0633014ca4533e578b59af222f5e66ec|1505720289&apos;,</div><div class="line">&apos;If-None-Match&apos;:&quot;18acdf8a9f0e2d237e42d54e1d964b16f8c1d486&quot;,</div><div class="line">&apos;Upgrade-Insecure-Requests&apos;:&apos;1&apos;,</div><div class="line">&apos;User-Agent&apos;:&apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.104 Safari/537.36 Core/1.53.3408.400 QQBrowser/9.6.12028.400&apos;&#125;</div><div class="line"># 这边的headers 我是直接复制浏览器上的 Request Headers（F12--里面的network）。用burpsuite也可以看到 Headers</div><div class="line">&gt;&gt;&gt; sess = requests.Session()</div><div class="line">&gt;&gt;&gt; html = sess.get(&apos;http://www.lyincloud.com:8000&apos;, headers=headers)</div><div class="line">&gt;&gt;&gt; x = BeautifulSoup(html.content,&quot;lxml&quot;)</div><div class="line">&gt;&gt;&gt; _xsrf = x.find(&apos;input&apos;, attrs=&#123;&apos;name&apos;: &apos;_xsrf&apos;&#125;)[&apos;value&apos;]</div><div class="line">&gt;&gt;&gt; data = &#123;&apos;username&apos;:&apos;xxx&apos;, &apos;password&apos;:&apos;xxx&apos;, &apos;_xsrf&apos;: _xsrf&#125;</div><div class="line">&gt;&gt;&gt; res = sess.post(&apos;http://www.xxx.com/login&apos;, data=data, headers=headers)</div><div class="line">&gt;&gt;&gt; print(res)</div><div class="line">&lt;Response [200]&gt;</div><div class="line"># 没有加上 _xsrf 参数时，res都是403</div><div class="line">&gt;&gt;&gt; qqq = BeautifulSoup(res.content, &quot;lxml&quot;)</div><div class="line">&gt;&gt;&gt; print(qqq)</div><div class="line"># 这时候就可以看到经过BeautifulSoup处理过的html数据</div></pre></td></tr></table></figure>
+<p>没加 _xsrf 参数，会出现403，是因为程序本身做了安全防范，tornado里有个 xsrf 参数，<br>要通过post登录，需要包含这个参数。其实，直接用burp抓包可以发现需要提交的参数</p>
+<p><img src="/img/requests-post.png" alt="发送的数据包"></p>
+<p>关于session的进一部操作，以后再说</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/06/30/渗透测试工具实战技巧合集/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1467,268 +1715,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/03/10/Ubuntu16-04-安装MQTT/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="nina">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="nina's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="nina's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/10/Ubuntu16-04-安装MQTT/" itemprop="url">
-                  Ubuntu16.04 安装MQTT
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-10T16:31:24+08:00">
-                2017-03-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Ubuntu官网下载的镜像安装，很多基础工具都没有。在这里记录一下安装的一些基本工具和配置，用于MQTT-Python开发"><a href="#Ubuntu官网下载的镜像安装，很多基础工具都没有。在这里记录一下安装的一些基本工具和配置，用于MQTT-Python开发" class="headerlink" title="Ubuntu官网下载的镜像安装，很多基础工具都没有。在这里记录一下安装的一些基本工具和配置，用于MQTT+Python开发"></a>Ubuntu官网下载的镜像安装，很多基础工具都没有。在这里记录一下安装的一些基本工具和配置，用于MQTT+Python开发</h2><p>全新Ubuntu16.04版本 安装MQTT及测试<br>pip3、vim、paho-python、pycharm</p>
-<h1 id="安装MQTT"><a href="#安装MQTT" class="headerlink" title="安装MQTT"></a>安装MQTT</h1><p>MQTT 20-Feb-2017 22:07版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">root@ubuntu:/home/user<span class="comment"># wget http://mosquitto.org/files/source/mosquitto-1.4.11.tar.gz </span></div><div class="line">root@ubuntu:/home/user<span class="comment"># tar zxvf mosquitto-1.4.11.tar.gz</span></div><div class="line">root@ubuntu:/home/user<span class="comment"># cd mosquitto-1.4.11</span></div><div class="line">root@ubuntu:/home/user/mosquitto-1.4.11<span class="comment"># apt-get updata</span></div><div class="line">root@ubuntu:/home/user/mosquitto-1.4.11<span class="comment"># apt-get install libssl-dev</span></div><div class="line">root@ubuntu:/home/user/mosquitto-1.4.11<span class="comment"># apt-get install libc-ares-dev</span></div><div class="line">root@ubuntu:/home/user/mosquitto-1.4.11<span class="comment"># apt-get install uuid-dev</span></div><div class="line">$ make</div><div class="line">$ make install</div><div class="line">$ sudo ln <span class="_">-s</span> /usr/<span class="built_in">local</span>/lib/libmosquitto.so.1 /usr/lib/libmosquitto.so.1</div><div class="line">$ sudo ldconfig</div></pre></td></tr></table></figure></p>
-<h1 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install vim-gtk</div></pre></td></tr></table></figure>
-<h1 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ adduser mosquitto</div></pre></td></tr></table></figure>
-<p>分别在3个中断输入命令<br>2.1 启动代理服务<br>mosquitto -v<br>    【-v】打印更多的调试信息</p>
-<p>2.2 订阅主题<br>mosquitto_sub -v -t sensor<br>    【-t】指定主题，此处为sensor<br>    【-v】打印更多的调试信息</p>
-<p>2.3 发布内容<br>mosquitto_pub -t sensor  -m 12<br>    【-t】指定主题<br>    【-m】指定消息内容</p>
-<p>1、开启服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">user@ubuntu:~/mosquitto-1.4.11$ mosquitto</div><div class="line">1489127489: mosquitto version 1.4.11 (build date 2017-03-09 21:56:14-0800) starting</div><div class="line">1489127489: Using default config.</div><div class="line">1489127489: Opening ipv4 listen socket on port 1883.</div><div class="line">1489127489: Opening ipv6 listen socket on port 1883.</div><div class="line">1489127510: New connection from 127.0.0.1 on port 1883.</div><div class="line">1489127510: New client connected from 127.0.0.1 as mosqsub/3605-ubuntu (c1, k60).</div><div class="line">1489127536: New connection from 127.0.0.1 on port 1883.</div><div class="line">1489127536: New client connected from 127.0.0.1 as mosqpub/3626-ubuntu (c1, k60).</div><div class="line">1489127536: Client mosqpub/3626-ubuntu disconnected.</div><div class="line">1489127585: New connection from 127.0.0.1 on port 1883.</div><div class="line">1489127585: New client connected from 127.0.0.1 as mosqpub/3630-ubuntu (c1, k60).</div><div class="line">1489127585: Client mosqpub/3630-ubuntu disconnected.</div></pre></td></tr></table></figure></p>
-<p>2、订阅<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">user@ubuntu:~$ mosquitto_sub -v -t sensor</div><div class="line">sensor 12</div><div class="line">sensor lllsssdff</div></pre></td></tr></table></figure></p>
-<p>3、发布<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">user@ubuntu:~$ mosquitto_pub -t sensor -m 12</div><div class="line">user@ubuntu:~$ mosquitto_pub -t sensor -m lllsssdff</div></pre></td></tr></table></figure></p>
-<p>参考链接：<a href="http://blog.csdn.net/xukai871105/article/details/39252653" target="_blank" rel="external">http://blog.csdn.net/xukai871105/article/details/39252653</a></p>
-<p>========================================================================</p>
-<h1 id="安装pip3"><a href="#安装pip3" class="headerlink" title="安装pip3"></a>安装pip3</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install python3-pip</div></pre></td></tr></table></figure>
-<h1 id="安装paho-python"><a href="#安装paho-python" class="headerlink" title="安装paho-python"></a>安装paho-python</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip3 install paho-mqtt</div></pre></td></tr></table></figure>
-<p>参考链接：<a href="https://pypi.python.org/pypi/paho-mqtt" target="_blank" rel="external">https://pypi.python.org/pypi/paho-mqtt</a></p>
-<h1 id="安装pycharm"><a href="#安装pycharm" class="headerlink" title="安装pycharm"></a>安装pycharm</h1><p>需要先安装 jdk<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ sudo add-apt-repository ppa:webupd8team/java</div><div class="line">$ sudo apt-get update</div><div class="line">$ sudo apt-get install oracle-java8-installer</div><div class="line">会出现对话框，选择是</div><div class="line">安装完成后还需要配置环境变量</div></pre></td></tr></table></figure></p>
-<p>参考链接：<a href="http://www.cnblogs.com/zhcncn/p/4027025.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4027025.html</a></p>
-<font color="red" size="5">Mail:605971081@qq.com</font>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://ly-nina.github.io/2017/02/18/Questions/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="nina">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="nina's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="nina's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/18/Questions/" itemprop="url">
-                  Questions
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-18T00:41:11+08:00">
-                2017-02-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="配置NexT主题碰到的问题"><a href="#配置NexT主题碰到的问题" class="headerlink" title="配置NexT主题碰到的问题"></a>配置NexT主题碰到的问题</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div></pre></td><td class="code"><pre><div class="line">$ hexo g</div><div class="line">INFO  Start processing</div><div class="line">ERROR Process failed: languages/zh-Hans.yml</div><div class="line">YAMLException: duplicated mapping key at line 16, column 3:</div><div class="line">      schedule: 日程</div><div class="line">      ^</div><div class="line">    at generateError (E:\Git\Hexo\node_modules\js-yaml\lib\js-yaml\loader.js:162:10)</div><div class="line">    at throwError (E:\Git\Hexo\node_modules\js-yaml\lib\js-yaml\loader.js:168:9)</div><div class="line">    at storeMappingPair (E:\Git\Hexo\node_modules\js-yaml\lib\js-yaml\loader.js:307:7)</div><div class="line">    at <span class="built_in">read</span>BlockMapping (E:\Git\Hexo\node_modules\js-yaml\lib\js-yaml\loader.js:1070:9)</div><div class="line">    at composeNode (E:\Git\Hexo\node_modules\js-yaml\lib\js-yaml\loader.js:1331:12)</div><div class="line">    at <span class="built_in">read</span>BlockMapping (E:\Git\Hexo\node_modules\js-yaml\lib\js-yaml\loader.js:1061:11)</div><div class="line">    at composeNode (E:\Git\Hexo\node_modules\js-yaml\lib\js-yaml\loader.js:1331:12)</div><div class="line">    at <span class="built_in">read</span>Document (E:\Git\Hexo\node_modules\js-yaml\lib\js-yaml\loader.js:1493:3)</div><div class="line">    at loadDocuments (E:\Git\Hexo\node_modules\js-yaml\lib\js-yaml\loader.js:1549:5)</div><div class="line">    at Object.load (E:\Git\Hexo\node_modules\js-yaml\lib\js-yaml\loader.js:1566:19)</div><div class="line">    at Hexo.yamlHelper (E:\Git\Hexo\node_modules\hexo\lib\plugins\renderer\yaml.js:7:15)</div><div class="line">    at Hexo.tryCatcher (E:\Git\Hexo\node_modules\bluebird\js\release\util.js:16:23)</div><div class="line">    at Hexo.&lt;anonymous&gt; (E:\Git\Hexo\node_modules\bluebird\js\release\method.js:15:34)</div><div class="line">    at E:\Git\Hexo\node_modules\hexo\lib\hexo\render.js:61:21</div><div class="line">    at tryCatcher (E:\Git\Hexo\node_modules\bluebird\js\release\util.js:16:23)</div><div class="line">    at Promise._settlePromiseFromHandler (E:\Git\Hexo\node_modules\bluebird\js\release\promise.js:510:31)</div><div class="line">    at Promise._settlePromise (E:\Git\Hexo\node_modules\bluebird\js\release\promise.js:567:18)</div><div class="line">    at Promise._settlePromise0 (E:\Git\Hexo\node_modules\bluebird\js\release\promise.js:612:10)</div><div class="line">    at Promise._settlePromises (E:\Git\Hexo\node_modules\bluebird\js\release\promise.js:691:18)</div><div class="line">    at Async._drainQueue (E:\Git\Hexo\node_modules\bluebird\js\release\async.js:133:16)</div><div class="line">    at Async._drainQueues (E:\Git\Hexo\node_modules\bluebird\js\release\async.js:143:10)</div><div class="line">    at Immediate.Async.drainQueues (E:\Git\Hexo\node_modules\bluebird\js\release\async.js:17:14)</div><div class="line">INFO  Files loaded <span class="keyword">in</span> 702 ms</div><div class="line">INFO  Generated: index.html</div><div class="line">INFO  Generated: archives/index.html</div><div class="line">INFO  Generated: archives/2017/02/index.html</div><div class="line">INFO  Generated: images/algolia_logo.svg</div><div class="line">INFO  Generated: images/avatar.gif</div><div class="line">INFO  Generated: images/cc-by-nc-sa.svg</div><div class="line">INFO  Generated: images/cc-by-nc.svg</div><div class="line">INFO  Generated: images/cc-by-nd.svg</div><div class="line">INFO  Generated: images/cc-by-nc-nd.svg</div><div class="line">INFO  Generated: images/placeholder.gif</div><div class="line">INFO  Generated: images/cc-by.svg</div><div class="line">INFO  Generated: images/cc-by-sa.svg</div><div class="line">INFO  Generated: images/cc-zero.svg</div><div class="line">INFO  Generated: images/loading.gif</div><div class="line">INFO  Generated: images/quote-l.svg</div><div class="line">INFO  Generated: images/searchicon.png</div><div class="line">INFO  Generated: archives/2017/index.html</div><div class="line">INFO  Generated: images/quote-r.svg</div><div class="line">INFO  Generated: lib/fastclick/LICENSE</div><div class="line">INFO  Generated: lib/font-awesome/HELP-US-OUT.txt</div><div class="line">INFO  Generated: lib/canvas-nest/canvas-nest.min.js</div><div class="line">INFO  Generated: lib/algolia-instant-search/instantsearch.min.css</div><div class="line">INFO  Generated: lib/velocity/bower.json</div><div class="line">INFO  Generated: lib/jquery_lazyload/CONTRIBUTING.html</div><div class="line">INFO  Generated: lib/jquery/index.js</div><div class="line">INFO  Generated: css/main.css</div><div class="line">INFO  Generated: lib/font-awesome/bower.json</div><div class="line">INFO  Generated: lib/fastclick/README.html</div><div class="line">INFO  Generated: lib/jquery_lazyload/README.html</div><div class="line">INFO  Generated: lib/fastclick/bower.json</div><div class="line">INFO  Generated: lib/jquery_lazyload/bower.json</div><div class="line">INFO  Generated: lib/jquery_lazyload/jquery.lazyload.js</div><div class="line">INFO  Generated: lib/velocity/velocity.ui.min.js</div><div class="line">INFO  Generated: lib/jquery_lazyload/jquery.scrollstop.js</div><div class="line">INFO  Generated: lib/velocity/velocity.min.js</div><div class="line">INFO  Generated: lib/velocity/velocity.ui.js</div><div class="line">INFO  Generated: lib/velocity/velocity.js</div><div class="line">INFO  Generated: lib/algolia-instant-search/instantsearch.min.js</div><div class="line">INFO  Generated: 2017/02/17/hello-world/index.html</div><div class="line">INFO  Generated: lib/font-awesome/fonts/FontAwesome.otf</div><div class="line">INFO  Generated: lib/font-awesome/fonts/fontawesome-webfont.eot</div><div class="line">INFO  Generated: lib/font-awesome/fonts/fontawesome-webfont.woff2</div><div class="line">INFO  Generated: lib/font-awesome/fonts/fontawesome-webfont.woff</div><div class="line">INFO  Generated: js/src/affix.js</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/helpers/fancybox_buttons.png</div><div class="line">INFO  Generated: lib/ua-parser-js/dist/ua-parser.min.js</div><div class="line">INFO  Generated: lib/fastclick/lib/fastclick.min.js</div><div class="line">INFO  Generated: lib/font-awesome/css/font-awesome.css</div><div class="line">INFO  Generated: js/src/bootstrap.js</div><div class="line">INFO  Generated: 2017/02/17/first/index.html</div><div class="line">INFO  Generated: js/src/algolia-search.js</div><div class="line">INFO  Generated: js/src/hook-duoshuo.js</div><div class="line">INFO  Generated: js/src/motion.js</div><div class="line">INFO  Generated: js/src/post-details.js</div><div class="line">INFO  Generated: lib/ua-parser-js/dist/ua-parser.pack.js</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/jquery.fancybox.css</div><div class="line">INFO  Generated: js/src/scrollspy.js</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/helpers/jquery.fancybox-buttons.css</div><div class="line">INFO  Generated: js/src/utils.js</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/helpers/jquery.fancybox-buttons.js</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/helpers/jquery.fancybox-media.js</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/helpers/jquery.fancybox-thumbs.css</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/jquery.fancybox.js</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/jquery.fancybox.pack.js</div><div class="line">INFO  Generated: lib/fastclick/lib/fastclick.js</div><div class="line">INFO  Generated: lib/font-awesome/css/font-awesome.min.css</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/fancybox_loading.gif</div><div class="line">INFO  Generated: lib/font-awesome/fonts/fontawesome-webfont.ttf</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/helpers/jquery.fancybox-thumbs.js</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/fancybox_loading@2x.gif</div><div class="line">INFO  Generated: lib/font-awesome/css/font-awesome.css.map</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/fancybox_sprite@2x.png</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/fancybox_overlay.png</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/fancybox_sprite.png</div><div class="line">INFO  Generated: lib/fancybox/<span class="built_in">source</span>/blank.gif</div><div class="line">INFO  Generated: lib/font-awesome/fonts/fontawesome-webfont.svg</div><div class="line">INFO  Generated: js/src/schemes/pisces.js</div><div class="line">INFO  77 files generated <span class="keyword">in</span> 1.48 s</div></pre></td></tr></table></figure>
-<p>问题在于zh-Hans.yml文件中的 schedule 这一行</p>
-<p>ERROR Process failed: languages/zh-Hans.yml<br>YAMLException: duplicated mapping key at line 16, column 3:<br>      schedule: 日程</p>
-<p>我把这一行删了重新部署，可以正常运行，但是我实在搞不明白这一行为什么会出错<br>有知道的大神麻烦告诉我！感谢！</p>
-<font color="red" size="5">Mail:605971081@qq.com</font>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1778,7 +1764,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
